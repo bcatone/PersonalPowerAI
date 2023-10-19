@@ -1,0 +1,2 @@
+class UserCareersController < ApplicationController
+end
