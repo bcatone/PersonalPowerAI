@@ -1,14 +1,12 @@
-import React from "react"
-import iconError from "../../images/iconError.svg"
-import iconSuccess from "../../images/iconSuccess.svg"
-import "../InfoTooltip/InfoTooltip.css"
+import React from 'react';
+import iconError from '../../images/iconError.svg';
+import iconSuccess from '../../images/iconSuccess.svg';
+import '../InfoTooltip/InfoTooltip.css';
 
 function InfoTooltipEditProfile(props) {
   return (
     <div
-      className={`popup popup_type_tooltip ${
-        props.isOpen ? "popup_opened" : ""
-      }`}
+      className={`popup popup_type_tooltip ${props.isOpen ? 'popup_opened' : ''}`}
       onClick={props.onCloseOverlay}
     >
       <div className="popup__container">
@@ -16,34 +14,26 @@ function InfoTooltipEditProfile(props) {
           <>
             <img
               src={`${iconSuccess}`}
-              alt="Редактирование прошло успешно."
+              alt="Your profile is succesfully updated!"
               className="popup__signup-image"
             />
-            <p className="popup__signup-title">
-              Редактирование прошло успешно!
-            </p>
+            <p className="popup__signup-title">Your profile is succesfully updated!</p>
           </>
         ) : (
           <>
             <img
               src={`${iconError}`}
-              alt="Редактирование не было выполнено."
+              alt="Something went wrong. Try again later!"
               className="popup__signup-image"
             />
-            <p className="popup__signup-title">
-              Что-то пошло не так. Попробуйте ещё раз!
-            </p>
+            <p className="popup__signup-title">Something went wrong. Try again later!</p>
           </>
         )}
 
-        <button
-          type="button"
-          className="popup__close-button"
-          onClick={props.onClose}
-        ></button>
+        <button type="button" className="popup__close-button" onClick={props.onClose}></button>
       </div>
     </div>
-  )
+  );
 }
 
-export default InfoTooltipEditProfile
+export default InfoTooltipEditProfile;
