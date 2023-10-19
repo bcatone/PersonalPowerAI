@@ -1,0 +1,151 @@
+.header {
+  position: relative;
+  padding: 0 calc((100% - 1280px + 100px) / 2);
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  background: var(--gum-purple);
+}
+
+.header_theme_purple {
+  background: var(--dark-lilac);
+  padding: 0 calc((100% - 1280px + 100px) / 2);
+}
+
+.header__button-wrapper {
+  margin-left: auto;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.header__button-wrapper-items {
+  display: flex;
+  gap: 21px;
+  margin-left: 721px;
+}
+
+.header__button {
+  min-height: 32px;
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dove-gray);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.header__button_active {
+  min-height: 32px;
+  font-weight: 500;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.header__button:hover {
+  cursor: pointer;
+  color: var(--teal);
+}
+
+/* .header__button-black {
+  color: #fff;
+  background-color: #000;
+  min-width: 76px;
+  border-radius: 3px;
+}
+
+.header__button-black:hover {
+  color: #fff;
+  background-color: #8e3a97;
+  min-width: 76px;
+  border-radius: 3px;
+}
+
+.header__account-button {
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.header__account-image {
+  object-fit: cover;
+  width: 100px;
+  height: 30px;
+  margin: 0;
+  transition: 0.7s;
+}
+
+.header__account-button:hover {
+  opacity: 0.6;
+}
+
+.header__menu-button {
+  background-color: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  display: none;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+.header__menu-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    padding: 0 70px;
+  }
+  .header__button-wrapper-items {
+    margin-left: 621px;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .header {
+    padding: 0 30px;
+  }
+  .header__button-wrapper-items {
+    margin-left: 600px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .header__button-wrapper-items {
+    display: none;
+  }
+
+  .header__account-button {
+    display: none;
+  }
+
+  .header__menu-button {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    padding: 0 14px;
+  }
+
+  .header__button-wrapper {
+    gap: 14px;
+  }
+
+  .header__button {
+    min-height: 26px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .header__button-black {
+    min-width: 54px;
+  }
+} */

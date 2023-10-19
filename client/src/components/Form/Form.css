@@ -1,0 +1,207 @@
+.form {
+  padding: 18px 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  height: 100vh;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+.logo_place_form {
+  text-align: center;
+}
+
+.form__title {
+  font-family: 'TT-InterphasesDB';
+  color: var(--white);
+  padding: 24px 0 18px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.forma {
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+  width: 100%;
+}
+
+.form__button-save {
+  height: 45px;
+  background-color: var(--white);
+  border: 2px solid var(--dark-lilac);
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  text-decoration: none;
+  color: #241153;
+  text-align: center;
+  font-family: TT Interphases Pro Trl;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 23.1px */
+  letter-spacing: -0.399px;
+}
+
+.form__button-save:hover {
+  background-color: var(--white);
+  box-shadow: 4px 4px 0px 0px var(--dark-lilac);
+}
+
+.form__button-save_inactive {
+  pointer-events: none;
+
+  color: #241153;
+  text-align: center;
+  font-family: TT Interphases Pro Trl;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 23.1px */
+  letter-spacing: -0.399px;
+  opacity: 0.3;
+}
+
+.form__button-save_loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.form__text {
+  padding-top: 16px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--white);
+}
+
+.form__text_mentor {
+  margin-top: 14px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--white);
+}
+
+.form__link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 10px;
+}
+
+.form__link_mentor {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.form__link:hover {
+  color: var(--teal);
+}
+
+.form__label {
+  position: relative;
+  margin: 0 0 24px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 12px;
+  color: var(--white);
+}
+
+.form__input {
+  margin: 10px 0 0;
+  height: 46px;
+  color: #000;
+  padding: 10px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  border: none;
+  background: #f9f9f9;
+  border-radius: 3px;
+  outline: none;
+}
+
+.form__input:focus {
+  background-color: rgba(243, 193, 248, 0.5);
+}
+
+.form__input_type_error {
+  border-bottom-color: red;
+}
+
+.form__input_type_error:focus {
+  border-bottom-color: red;
+}
+
+.form__input-error {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  margin: 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ff4062;
+}
+
+.form__input-error_active {
+  visibility: visible;
+}
+
+@media screen and (max-width: 1023px) {
+  /* .form {
+    padding-bottom: 232px;
+  } */
+}
+
+@media screen and (max-width: 576px) {
+  .form {
+    padding: 56px 30px 30px 30px;
+    align-items: center;
+    max-width: 360px;
+  }
+
+  .form__title {
+    margin: 0;
+    padding: 50px 0 80px 0;
+    text-align: center;
+  }
+
+  .forma {
+    min-height: 468px;
+  }
+
+  .form__button-save {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__text {
+    padding-top: 14px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .form__link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
