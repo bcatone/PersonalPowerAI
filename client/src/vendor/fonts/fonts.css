@@ -44,12 +44,12 @@
 }
 
 @font-face {
-  font-family: 'TT-InterphasesCondencedDemiBold';
+  font-family: 'TT-InterphasesMono';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('./TT-Interphases-Pro-Trial-Condensed-DemiBold-Italic.woff2') format('woff2'),
-    url('./TT-Interphases-Pro-Trial-Condensed-DemiBold-Italic.woff') format('woff');
+  src: url('./TT\ Interphases\ Pro\ Mono\ Trial\ Regular.woff2') format('woff2'),
+    url('./TT\ Interphases\ Pro\ Mono\ Trial\ Regular.woff') format('woff');
 }
 @font-face {
   font-family: 'TT-InterphasesDB';

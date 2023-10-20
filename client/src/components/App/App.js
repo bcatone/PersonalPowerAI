@@ -10,7 +10,7 @@ import Login from '../Login/Login';
 import * as api from '../../utils/MainApi';
 import Profile from '../Profile/Profile';
 import Dashboard from '../Dashboard/Dashboard';
-import Chat from '../Chat/Chat';
+//import Chat from '../Chat/Chat';
 import Game from '../Game/Game';
 import Match from '../Match/Match';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
@@ -249,7 +249,7 @@ function App() {
               }
             />
             {/* not protected */}
-            <Route
+            {/* <Route
               path={'/dashboard'}
               element={
                 !isLoggedIn ? (
@@ -258,6 +258,10 @@ function App() {
                   <Login isLoading={isLoading} onAuthorization={loginUser} />
                 )
               }
+            /> */}
+            <Route
+              path={'/dashboard'}
+              element={!isLoggedIn ? <Dashboard /> : <Navigate to="/signin" replace />}
             />
             <Route
               path={'/profile'}
@@ -283,6 +287,14 @@ function App() {
                 </>
               }
             />
+            {/* <Route
+              path={'/chat'}
+              element={
+                <>
+                  <Chat />
+                </>
+              }
+            /> */}
             {/* <Route
               path={'/dashboard'}
               element={
