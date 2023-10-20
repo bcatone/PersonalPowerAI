@@ -1,0 +1,2 @@
+class MenteesController < ApplicationController
+end

@@ -1,0 +1,84 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--dark-lilac);
+  height: 100vh;
+}
+
+.not-found__code {
+  margin-top: 246px;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 169px;
+  text-align: center;
+}
+
+.not-found__code-description {
+  font-family: 'PolySansNeutral';
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 19px;
+  text-align: center;
+}
+
+.not-found__link {
+  font-family: 'TT-InterphasesDB';
+  margin-bottom: 60px;
+  min-height: 17px;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 17px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--dark-lilac);
+  transition: 0.5s ease-in-out;
+  background: transparent;
+  border: none;
+}
+
+.not-found__link:hover {
+  color: var(--teal);
+}
+
+@media screen and (max-width: 1023px) {
+  .not-found__code {
+    margin-top: 408px;
+  }
+
+  .not-found__link {
+    margin-bottom: 222px;
+  }
+}
+
+.not-found__icon {
+  background-image: url(../../images/robot.svg);
+  background-repeat: no-repeat;
+  width: 90px;
+  height: 120px;
+  margin: 48px auto 24px;
+}
+
+@media screen and (max-width: 480px) {
+  .not-found__code {
+    margin-top: 329px;
+    font-size: 80px;
+    line-height: 97px;
+  }
+
+  .not-found__code-description {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .not-found__link {
+    margin-top: 284px;
+    margin-bottom: 30px;
+    min-height: 15px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

@@ -123,6 +123,13 @@
 #   "Disabilities Support"
 # ]
 
+# =============================================================================================================
+# TODO:
+# Get user input for categories, cards are skills and interests
+# Frontend: Fetch list of categories, then retrieve skills and interest cards (another component?)
+
+# =============================================================================================================
+
 # # Create STEM and social good categories with skills and interests
 # (stem_categories + social_good_categories).each do |category_name|
 #   category = Category.create!(name: category_name)
@@ -269,3 +276,132 @@
 
 # # Output a confirmation message
 # puts "Seed data for categories, skills, and interests has been successfully"
+
+# db/seeds.rb
+
+# # Clear existing data
+# CareerTitle.destroy_all
+
+# # Define the STEM categories and job titles
+# stem_categories_and_job_titles = {
+#   "Computer Science" => [
+#     "Software Engineer", "Data Scientist", "Web Developer", "Systems Analyst", "Software Developer"
+#   ],
+#   "Electrical Engineering" => [
+#     "Electrical Engineer", "Electronics Technician", "Control Systems Engineer", "Power Systems Engineer", "Hardware Engineer"
+#   ],
+#   "Mechanical Engineering" => [
+#     "Mechanical Engineer", "Automotive Engineer", "Product Design Engineer", "HVAC Engineer", "Manufacturing Engineer"
+#   ],
+#   "Civil Engineering" => [
+#     "Civil Engineer", "Structural Engineer", "Transportation Engineer", "Environmental Engineer", "Geotechnical Engineer"
+#   ],
+#   "Biomedical Engineering" => [
+#     "Biomedical Engineer", "Medical Device Engineer", "Biomechanics Engineer", "Clinical Engineer", "Tissue Engineer"
+#   ],
+#   "Environmental Science" => [
+#     "Environmental Scientist", "Climate Scientist", "Conservation Scientist", "Environmental Consultant", "GIS Specialist"
+#   ],
+#   "Mathematics" => [
+#     "Mathematician", "Statistician", "Actuary", "Data Analyst", "Operations Research Analyst"
+#   ],
+#   "Chemistry" => [
+#     "Chemist", "Analytical Chemist", "Chemical Engineer", "Medicinal Chemist", "Materials Scientist"
+#   ],
+#   "Physics" => [
+#     "Physicist", "Astrophysicist", "Quantum Physicist", "Nuclear Physicist", "Optical Physicist"
+#   ],
+#   "Aerospace Engineering" => [
+#     "Aerospace Engineer", "Aeronautical Engineer", "Flight Systems Engineer", "Propulsion Engineer", "Avionics Engineer"
+#   ],
+#   "Data Science" => [
+#     "Data Scientist", "Machine Learning Engineer", "Data Analyst", "Big Data Engineer", "Data Engineer"
+#   ],
+#   "Information Technology" => [
+#     "IT Manager", "Network Administrator", "Cybersecurity Analyst", "Database Administrator", "IT Consultant"
+#   ],
+#   "Robotics" => [
+#     "Robotics Engineer", "Control Systems Engineer", "Automation Engineer", "Robotics Technician", "AI Robotics Specialist"
+#   ],
+#   "Geology" => [
+#     "Geologist", "Seismologist", "Geological Engineer", "Environmental Geologist", "Hydrogeologist"
+#   ],
+#   "Biochemistry" => [
+#     "Biochemist", "Molecular Biologist", "Geneticist", "Pharmaceutical Scientist", "Protein Chemist"
+#   ]
+# }
+
+# # Create CareerTitles and associate them with Categories
+# stem_categories_and_job_titles.each do |category_name, job_titles|
+#   category = CareerField.find_or_create_by!(name: category_name)
+#   puts "Created or updated #{category}"
+
+#   job_titles.each do |job_title|
+#     career_title = CareerTitle.find_or_create_by!(name: job_title, career_field: category)
+#     puts "Created or updated #{career_title}"
+#   end
+# end
+
+# # Output a confirmation message
+# puts "Seed data for job titles and categories has been successfully created"
+
+# Clear existing data
+
+Mentor.destroy_all
+Mentee.destroy_all
+User.destroy_all
+
+# Seed mentors
+50.times do
+  user = User.create!(
+    username: Faker::Internet.unique.username,
+    password: 'password',  # You may want to use a more secure method for setting passwords
+    email: Faker::Internet.unique.email,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    date_of_birth: Faker::Date.birthday(min_age: 20, max_age: 70).strftime("%Y-%m-%d"),
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    country: Faker::Address.country,
+    zip_code: Faker::Address.zip_code,
+    timezone: Faker::Address.time_zone
+  )
+
+  # Assign gender, race, skills, interests to mentors
+  user.genders << Gender.all.sample(1)
+  user.races << Race.all.sample(1)
+  user.skills << Skill.all.sample(rand(1..5))
+  user.interests << Interest.all.sample(rand(1..5))
+
+  Mentor.create!(user: user)
+  puts "Created mentor #{user[:first_name]}"
+end
+
+# Seed mentees
+50.times do
+  user = User.create!(
+    username: Faker::Internet.unique.username,
+    password: 'password',  # You may want to use a more secure method for setting passwords
+    email: Faker::Internet.unique.email,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    date_of_birth: Faker::Date.birthday(min_age: 16, max_age: 25).strftime("%Y-%m-%d"),
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    country: Faker::Address.country,
+    zip_code: Faker::Address.zip_code,
+    timezone: Faker::Address.time_zone
+  )
+
+  # Assign gender, race, skills, interests to mentees
+  user.genders << Gender.all.sample(1)
+  user.races << Race.all.sample(1)
+  user.skills << Skill.all.sample(rand(1..5))
+  user.interests << Interest.all.sample(rand(1..5))
+
+  Mentee.create!(user: user)
+  puts "Created mentee #{user[:first_name]}"
+end
+
+# Output a confirmation message
+puts "Seed data for mentors and mentees has been successfully created"

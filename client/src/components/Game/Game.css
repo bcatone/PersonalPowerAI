@@ -1,0 +1,104 @@
+.game {
+  height: 100vh;
+  background: var(--gum-purple);
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+}
+
+.cards,
+.middle {
+  text-align: center;
+}
+
+.card {
+  display: block;
+  border-radius: 8px;
+  max-width: 500px;
+  max-height: 800px;
+  grid-area: 1/1;
+}
+
+.full-area {
+  grid-area: 1/1;
+}
+
+.grid {
+  display: grid;
+  place-items: center;
+}
+
+.search-input {
+  font-size: 72px;
+}
+
+.search-input::placeholder {
+  color: #323232;
+}
+
+.search-clear,
+.spinner {
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.search-clear {
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+}
+
+.search-hint,
+.spinner {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.show-hint .search-hint {
+  opacity: 1;
+}
+
+.loading .spinner {
+  opacity: 1;
+}
+
+.loading .search-hint {
+  opacity: 0;
+}
+
+.has-results .search-clear {
+  opacity: 1;
+}
+
+.has-results .title {
+  opacity: 0;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 18px;
+  }
+
+  .search-input {
+    font-size: 32px;
+    width: 94vw;
+    line-height: 1;
+    height: 88px;
+  }
+  .video {
+    width: 100%;
+    padding: 0 32px;
+  }
+  .videos {
+    width: 100%;
+  }
+}

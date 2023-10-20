@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_19_073137) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_19_155858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_19_073137) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "mentor_id", null: false
+    t.bigint "mentee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mentee_id"], name: "index_matches_on_mentee_id"
+    t.index ["mentor_id"], name: "index_matches_on_mentor_id"
+  end
+
+  create_table "mentees", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mentees_on_user_id"
+  end
+
+  create_table "mentors", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mentors_on_user_id"
   end
 
   create_table "races", force: :cascade do |t|
@@ -155,6 +178,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_19_073137) do
   add_foreign_key "category_interests", "interests"
   add_foreign_key "category_skills", "categories"
   add_foreign_key "category_skills", "skills"
+  add_foreign_key "matches", "mentees"
+  add_foreign_key "matches", "mentors"
+  add_foreign_key "mentees", "users"
+  add_foreign_key "mentors", "users"
   add_foreign_key "user_careers", "career_titles"
   add_foreign_key "user_careers", "users"
   add_foreign_key "user_genders", "genders"

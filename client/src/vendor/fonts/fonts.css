@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'PolySansBulky';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./PolySansTrial-Bulky.woff2') format('woff2'),
+    url('./PolySansTrial-Bulky.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'PolySansMedium';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./PolySansTrial-Median.woff2') format('woff2'),
+    url('./PolySansTrial-Median.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'PolySansNeutral';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./PolySansTrial-Neutral.woff2') format('woff2'),
+    url('./PolySansTrial-Neutral.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'PolySansSlim';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./PolySansTrial-Slim.woff2') format('woff2'),
+    url('./PolySansTrial-Slim.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'TT-InterphasesCondencedBold';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./TT-Interphases-Pro-Trial-Condensed-Bold.woff2') format('woff2'),
+    url('./TT-Interphases-Pro-Trial-Condensed-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'TT-InterphasesCondencedDemiBold';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./TT-Interphases-Pro-Trial-Condensed-DemiBold-Italic.woff2') format('woff2'),
+    url('./TT-Interphases-Pro-Trial-Condensed-DemiBold-Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'TT-InterphasesDB';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./TT-Interphases-Pro-Trial-DemiBold.woff2') format('woff2'),
+    url('./TT-Interphases-Pro-Trial-DemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'TT-InterphasesLight';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./TT-Interphases-Pro-Trial-Light.woff2') format('woff2'),
+    url('./TT-Interphases-Pro-Trial-Light.woff') format('woff');
+}

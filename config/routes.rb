@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+resources :matches
+  resources :mentees
+  resources :mentors
   resources :user_careers
   resources :career_titles
   resources :career_fields
@@ -21,8 +24,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
+  post '/register', to: 'users#create'
   post '/login', to: 'sessions#create'
   delete '/logout', to:'sessions#destroy'
   get '/me', to: 'sessions#show'
+
+  get '/match-prompt-data', to: 'ai#match_prompt_data' # "https://localhost:3000/match-prompt-data"
   
 end
