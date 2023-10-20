@@ -1,0 +1,195 @@
+.profile {
+  padding: 74px 0 70px 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 410px;
+  box-sizing: border-box;
+  background: var(--gum-purple);
+  color: var(--white);
+}
+
+.profile__title {
+  font-family: 'TT-InterphasesDB';
+  color: var(--white);
+  margin-bottom: 123px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.profile__forma {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profile__label {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 13px;
+  min-height: 30px;
+  cursor: text;
+}
+
+.profile__input {
+  margin: -5px 0 0;
+  width: 300px;
+  text-align: right;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 20px;
+  text-align: right;
+  color: #000;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.profile__input-error {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ff4062;
+  position: absolute;
+  top: 16px;
+  right: 0;
+  text-align: right;
+}
+
+.profile__input:focus {
+  background-color: rgba(243, 193, 248, 0.5);
+}
+
+.profile__input::placeholder {
+  color: var(--slate-gray);
+}
+
+.profile__line {
+  border-bottom: 1px solid var(--white);
+  margin-bottom: 17px;
+}
+
+.profile__button-save {
+  margin-top: 204px;
+  min-height: 16px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+}
+
+.profile__button-play {
+  margin-top: 10px;
+  height: 45px;
+  /* background-color: var(--white); */
+  border: 2px solid var(--dark-lilac);
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  text-decoration: none;
+  color: #241153;
+  text-align: center;
+  font-family: TT Interphases Pro Trl;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 23.1px */
+  letter-spacing: -0.399px;
+}
+
+.profile__button-play:hover {
+  background-color: var(--white);
+  box-shadow: 4px 4px 0px 0px var(--dark-lilac);
+}
+.form__button-save:hover {
+  background-color: var(--white);
+  box-shadow: 4px 4px 0px 0px var(--dark-lilac);
+}
+
+.profile__logout {
+  margin-top: 16px;
+  min-height: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--teal);
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile__delete {
+  margin-top: 16px;
+  min-height: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: var(--slate-gray);
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile {
+    padding-top: 236px;
+    padding-bottom: 269px;
+  }
+
+  .profile__title {
+    margin-bottom: 96px;
+  }
+
+  .profile__button-save {
+    margin-top: 193px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .profile {
+    padding: 70px 30px 40px 30px;
+  }
+
+  .profile__title {
+    margin-bottom: 80px;
+  }
+
+  .profile__input {
+    width: 150px;
+  }
+
+  .profile__button-save {
+    margin-top: 362px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .profile__logout {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
