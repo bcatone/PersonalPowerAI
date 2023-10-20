@@ -37,5 +37,9 @@ class User < ApplicationRecord
     self.age >= 18
   end
 
+  def gender
+    self.genders[0]
+  end
+
 
 end

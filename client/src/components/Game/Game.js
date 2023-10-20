@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Game.css';
 
 const API_KEY = ''; // Your API key here
@@ -10,12 +10,28 @@ function Game() {
   //   const searchEl = React.createRef();
   // here we grab our search hint
   const hintEl = document.querySelector('.game-hint');
+  // const [stackedCards, setStackedCards] = useState([]);
+  const [numLikedCards, setNumLikedCards] = useState(0);
+
+  useEffect(() => {
+    
+  }, [])
+
+  const handleSeenCard = (card) => {
+    // add to stack array
+  }
+
+  const handleLikedCard = (card) => {
+    handleSeenCard(card);
+    setNumLikedCards(num => num + 1);
+    // send the card to the backend at "/update-match-criteria"
+  }
 
   const randomChoice = arr => {
     return arr[Math.floor(arr.length * Math.random())];
   };
 
-  const createCard = src => {
+  const renderCard = src => {
     return <img src={src} alt="Card" className="card" onLoad={() => setIsLoading(false)} />;
   };
 
@@ -50,11 +66,12 @@ function Game() {
           <button className="thumbsup reactions">
             <img src="../../images/thumbsup.svg" alt="Thumbs Up" />
           </button>
-          <div className="cards grid full-area">{cards.map((src, index) => createCard(src))}</div>
+          <div className="cards grid full-area">{cards.map((src, index) => renderCard(src))}</div>
+          <button className="thumbsdown reactions">
+            <img src="../../images/thumbsdown.svg" alt="Thumbs Down" />
+          </button>
         </div>
-        <button className="thumbsdown reactions">
-          <img src="../../images/thumbsdown.svg" alt="Thumbs Down" />
-        </button>
+
 
         <div className="indicators grid">
           <img className="spinner full-area" src="oval.svg" alt="Spinner" />

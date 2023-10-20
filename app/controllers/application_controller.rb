@@ -8,10 +8,10 @@ class ApplicationController < ActionController::API
 
     before_action :authorized_user
 
-    Passage = Passage::Client.new(
-      app_id: Rails.application.config.passage_app_id
-      api_key: Rails.application.config.passage_api_key
-    )
+    # PassageClient = Passage::Client.new(
+    #   app_id: Rails.application.config.passage_app_id
+    #   api_key: Rails.application.config.passage_api_key
+    # )
 
     def current_user
       user = User.find_by(id: session[:user_id])

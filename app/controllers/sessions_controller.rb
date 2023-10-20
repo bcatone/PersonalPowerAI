@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-    skip_before_action :authorized_user, only: [:create]
+    skip_before_action :authorized_user, only: [:create, :destroy]
 
     def show
         render json: current_user, status: :ok
@@ -8,20 +8,35 @@ class SessionsController < ApplicationController
     
     # This is the standard password login without Passage
     def create
-        user = User.find_by(username: params[:username])
+
+        puts "Requested email: "
+        user = User.find_by(email: params[:email])
 
         # Handle successful login with the password
-        if user&.authenticate(params[:password])
+        # if user&.authenticate(params[:password])
+        if user
+            puts "Actually logging in the user"
             session[:user_id] = user.id
             render json: user, status: :created
 
-        # Handle incorrect username or password
-        elsif user.password
-            render json:{ error: "Invalid username or password"}, status: :unauthorized
+        # # Handle no password set due to user originally registering with Passage
+        # elsif !user.password
+            # render json: { error: "No password was set for this account", email: params[:email]}, status: :unprocessable_entity
 
-        # Handle no password set due to user originally registering with Passage
+        # Handle incorrect username or password
         else
-            render json: { error: "No password was set for this account"}, status: :unprocessable_entity
+
+            # Temporary code while the auth issue is being fixed
+            mock_user = User.first
+
+            if mock_user
+                puts "Pretending to log in the user"
+                session[:user_id] = mock_user.id
+                render json: mock_user, status: :ok
+            else
+                render json:{ error: "Invalid username or password", }, status: :unauthorized
+            end
+            # End temporary code
         end
     end
     

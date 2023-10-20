@@ -30,5 +30,5 @@ resources :matches
   get '/me', to: 'sessions#show'
 
   get '/match-prompt-data', to: 'ai#match_prompt_data' # "https://localhost:3000/match-prompt-data"
-  
+  get '/chatbot-prompt-data', to: 'ai#chat_prompt_data' # https://localhost:3000/chatbot-prompt-data
 end

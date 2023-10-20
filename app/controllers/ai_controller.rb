@@ -1,6 +1,8 @@
-class AIController < ApplicationController
+class AiController < ApplicationController
+    skip_before_action :authorized_user
 
     def chat_prompt_data
+        
         render json: current_user, serializer: UserSerializer, status: :ok
     end
 
@@ -9,15 +11,29 @@ class AIController < ApplicationController
         # current user (id, match criteria only)
         # all mentor records (id, match criteria only)
 
-        mentors = Mentor.select(:id).includes(:skills, :interests, :genders, :races)
+        # mentors = Mentor.select(:id).includes(:skills, :interests, :genders, :races)
 
-        mentor_arr = []
+        @mentors = Mentor.all
+
+        mentors = []
+
+        @mentors.each do |mentor|
+            user = mentor.user
+            mentor_obj = {
+                skills: user.skills,
+                interests: user.interests,
+                genders: user.genders,
+                races: user.races
+            }
+
+            mentors << mentor_obj
+        end
 
         match_data = {
             mentee_id: current_user.id,
             skills: current_user.skills,
             interests: current_user.interests,
-            mentors: Mentor.all
+            mentors: mentors
         }
 
         render json: match_data, status: :ok
