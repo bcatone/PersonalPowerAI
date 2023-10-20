@@ -1,0 +1,103 @@
+.dashboard {
+  max-width: 1140px;
+  width: calc(100% - 70 * 2px);
+  margin: 0 auto;
+}
+
+.grid-container {
+  display: grid;
+  /* grid-template-columns: 1fr 2fr 1fr; */
+  grid-template-areas:
+    'dashboard progres progres challenges'
+    'dashboard messages messages schedules'
+    'dashboard messages messages schedules';
+  grid-gap: 20px; /* Adjust the gap as needed */
+  height: 100vh;
+  padding: 20px 0;
+}
+
+/* Styles for the grid items */
+.grid-item {
+  padding: 10px; /* Adjust padding as needed */
+  border: 1px solid #ccc; /* Add borders or styles as needed */
+  text-align: left;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.grid-item-dashboard {
+  grid-area: dashboard;
+}
+
+.grid-item-progress {
+  grid-area: progres;
+  background-color: var(--white);
+  background-image: url(../../images/progress.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+}
+
+.grid-item-messages {
+  grid-area: messages;
+  background-color: var(--white);
+  border: none;
+}
+
+.grid-item-challenges {
+  grid-area: challenges;
+}
+
+.grid-item-schedules {
+  grid-area: schedules;
+  background-color: var(--white);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.grid-item-name {
+  font-family: 'PolySansNeutral';
+  font-size: 24px;
+  color: var(--dark-lilac);
+}
+
+.dark {
+  color: var(--white);
+}
+
+.grid-link {
+  font-family: 'TT-InterphasesMono';
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--white);
+  margin: 10px 0;
+}
+
+.grid-main-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-bottom-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.challenge-text {
+  font-family: 'TT-InterphasesMono';
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--white);
+  margin: 10px 0;
+  max-width: 200px;
+}
+
+.more-link {
+  font-family: 'TT-InterphasesMono';
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+}

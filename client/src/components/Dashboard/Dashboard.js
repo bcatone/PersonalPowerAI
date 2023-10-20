@@ -1,90 +1,69 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import Header from '../Header/Header';
-import useForm from '../../hooks/useForm';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { PATTERN_REGEX_EMAIL } from '../../utils/constants';
+import { Link, NavLink } from 'react-router-dom';
+import Chat from '../Chat/Chat';
+// import useForm from '../../hooks/useForm';
+// import CurrentUserContext from '../../contexts/CurrentUserContext';
 import './Dashboard.css';
+import Schedule from './Schedules/Schedules';
 
-function Dashboard({ loggedIn, isLoading, onUpdateUser, signOut }) {
-  const currentUser = useContext(CurrentUserContext);
-  const { enteredValues, errors, handleChangeInput, isFormValid, resetForm } = useForm();
-  const [isLastValues, setIsLastValues] = useState(false);
-
-  useEffect(() => {
-    if (currentUser.name === enteredValues.name && currentUser.email === enteredValues.email) {
-      setIsLastValues(true);
-    } else {
-      setIsLastValues(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enteredValues]);
-
-  useEffect(() => {
-    if (currentUser) {
-      resetForm(currentUser);
-    }
-  }, [currentUser, resetForm]);
-
-  function setEditUserInfo(event) {
-    event.preventDefault();
-    onUpdateUser({
-      name: enteredValues.name,
-      email: enteredValues.email
-    });
-  }
-
+function Dashboard() {
   return (
     <>
-      <Header loggedIn={loggedIn} />
-      <section className="profile">
-        <h3 className="profile__title">Hello, {currentUser.name}!</h3>
-        <form className="profile__forma" id="form" onSubmit={setEditUserInfo} noValidate>
-          <label className="profile__label">
-            Имя
-            <input
-              className="profile__input"
-              name="name"
-              minLength="2"
-              maxLength="40"
-              placeholder="Ваше имя"
-              type="text"
-              onChange={handleChangeInput}
-              value={enteredValues.name || ''}
-              required
-            />
-            <span className="profile__input-error">{errors.name}</span>
-          </label>
-          <div className="profile__line"></div>
-          <label className="profile__label">
-            E-mail
-            <input
-              className="profile__input"
-              name="email"
-              placeholder="Ваш Email"
-              type="email"
-              onChange={handleChangeInput}
-              pattern={PATTERN_REGEX_EMAIL}
-              value={enteredValues.email || ''}
-              required
-            />
-            <span className="profile__input-error">{errors.email}</span>
-          </label>
-          <button
-            type="submit"
-            disabled={!isFormValid ? true : false}
-            className={
-              !isFormValid || isLoading || isLastValues
-                ? 'profile__button-save form__button-save_inactive'
-                : 'profile__button-save'
-            }
-          >
-            Редактировать
-          </button>
-          <Link className="profile__logout" to="/profile" type="button" onClick={signOut}>
-            Выйти из аккаунта
-          </Link>
-        </form>
+      <Header />
+      <section className="dashboard">
+        <div class="grid-container">
+          <div class="grid-item grid-item-dashboard">
+            <h3 class="grid-item-name dark">Dashboard</h3>
+            <div className="grid-main-links">
+              <Link className="grid-link" to="/profile">
+                Profile
+              </Link>
+              <Link className="grid-link" to="/mentors">
+                Mentors
+              </Link>
+              <Link className="grid-link" to="/learning-community">
+                Learning Community
+              </Link>
+              <Link className="grid-link" to="/messages">
+                Messages
+              </Link>
+              <Link className="grid-link" to="/projects">
+                Projects
+              </Link>
+            </div>
+            <div className="grid-bottom-links">
+              <Link className="grid-link" to="/settings">
+                Settings
+              </Link>
+              <Link className="grid-link" to="/signout">
+                signOut
+              </Link>
+            </div>
+          </div>
+          <div className="grid-item grid-item-progress">
+            <h3 className="grid-item-name">Progress</h3>
+          </div>
+          <div className="grid-item grid-item-messages">
+            <h3 className="grid-item-name">Inbox Messages</h3>
+            <div class="grid-item grid-item-messages">
+              <Chat />
+            </div>
+          </div>
+          <div className="grid-item grid-item-challenges">
+            <h3 className="grid-item-name dark">Daily Challenges</h3>
+            <p className="challenge-text">
+              Pick a day to actively practice empathy. Make an effort to see situations from other
+              people's perspectives, both at work and in your personal life. Engage in conversations
+              with colleagues and friends, trying to understand their feelings and needs.{' '}
+              <span className="more-link">read more...</span>
+            </p>
+          </div>
+          <div className="grid-item grid-item-schedules">
+            <h3 className="grid-item-name">Your Schedule</h3>
+            <Schedule />
+          </div>
+        </div>
       </section>
     </>
   );

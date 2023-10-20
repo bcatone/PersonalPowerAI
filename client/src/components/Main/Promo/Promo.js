@@ -3,6 +3,14 @@ import './Promo.css';
 import { Link } from 'react-router-dom';
 
 function Promo() {
+  const handleSmoothScroll = (event, targetId) => {
+    event.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="promo">
       <div className="promo__wrapper">
@@ -14,6 +22,16 @@ function Promo() {
             START YOUR JOURNEY
           </Link>
         </div>
+      </div>
+      <div className="promo__how-it-works">
+        <a
+          href="#how-it-works"
+          className="promo__how-it-works-link"
+          onClick={event => handleSmoothScroll(event, 'how-it-works')}
+        >
+          How It Works
+          <div className="promo__how-it-works-arrow"></div>
+        </a>
       </div>
     </section>
   );

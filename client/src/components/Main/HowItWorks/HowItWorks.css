@@ -1,0 +1,58 @@
+.how-it-works {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: center;
+}
+
+.how-it-works-container {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.how-it-works-header {
+  font-family: 'PolySansMedium';
+  font-size: 64px;
+  margin: 0;
+}
+.step-details h3 {
+  padding: 10px 0;
+}
+.step {
+  display: flex;
+  flex: 1; /* Each step takes an equal portion of the available space */
+  flex-direction: column;
+  background-color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--dark-lilac);
+  min-height: 300px;
+  padding: 0 10px;
+  margin-top: 120px;
+}
+
+.step-number {
+  font-family: 'PolySansBulky';
+  font-size: 64px;
+  color: var(--dark-lilac);
+  text-align: center;
+}
+
+.step-details h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.step-details ul {
+  padding-top: 20px;
+}
+
+.step-details ul li {
+  list-style: none;
+  margin-bottom: 5px;
+}
