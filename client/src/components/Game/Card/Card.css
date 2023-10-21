@@ -1,0 +1,36 @@
+.card {
+  background-color: white;
+  border-radius: 8px;
+  height: 68vh;
+  width: 50vh;
+  max-width: 500px;
+  max-height: 800px;
+  box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.68);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 20px;
+
+  transition: transform 0.5s, opacity 0.5s, visibility 0.5s;
+  position: absolute;
+  transform: translateY(60%);
+}
+
+.card-title {
+  font-family: 'PolySansMedium';
+  font-size: 24px;
+  color: var(--darc-lilac);
+}
+
+.right-swipe {
+  transform: translateX(100%) rotate(20deg);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.left-swipe {
+  transform: translateX(-100%) rotate(-20deg);
+  opacity: 0;
+  visibility: hidden;
+}
