@@ -12,7 +12,7 @@ import Profile from '../Profile/Profile';
 import Dashboard from '../Dashboard/Dashboard';
 //import Chat from '../Chat/Chat';
 import Game from '../Game/Game';
-import Match from '../Match/Match';
+import Match from '../Game/Match/Match';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import InfoTooltipEditProfile from '../InfoTooltipEditProfile/InfoTooltipEditProfile';
 import NotFound from '../NotFound/NotFound';

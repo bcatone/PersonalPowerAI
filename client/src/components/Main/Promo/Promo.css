@@ -1,5 +1,5 @@
 .promo {
-  background: var(--gum-purple);
+  /* Remove the background property, and set dimensions and positioning */
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,6 +8,30 @@
   align-items: center;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  /* Add styles to make the video appear as a background */
+  /* background: url('../../../images/hero_vid.mp4');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+}
+
+.video {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; /* Hide overflowing content */
+}
+
+.promo__video {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Place the video behind other content */
 }
 
 .promo__wrapper {
@@ -19,6 +43,7 @@
   background-repeat: no-repeat;
   text-align: center;
   margin-top: 160px;
+  z-index: 2;
 }
 
 .promo__title {
@@ -58,6 +83,7 @@
 }
 
 .promo__how-it-works {
+  z-index: 2;
   margin-top: 160px;
   text-align: center;
 }

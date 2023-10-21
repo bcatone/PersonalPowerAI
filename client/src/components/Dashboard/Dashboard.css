@@ -14,6 +14,7 @@
   grid-gap: 20px; /* Adjust the gap as needed */
   height: 100vh;
   padding: 20px 0;
+  max-height: 86vh;
 }
 
 /* Styles for the grid items */
@@ -29,14 +30,15 @@
 
 .grid-item-dashboard {
   grid-area: dashboard;
+  min-width: 250px;
 }
 
 .grid-item-progress {
   grid-area: progres;
-  background-color: var(--white);
-  background-image: url(../../images/progress.jpg);
+  background-color: #f7f7f7;
+  background-image: url(../../images/chart.jpg);
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: center;
   background-size: contain;
 }
 
@@ -54,6 +56,7 @@
   grid-area: schedules;
   background-color: var(--white);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  min-width: 320px;
 }
 
 .grid-item-name {
@@ -72,6 +75,10 @@
   text-decoration: none;
   color: var(--white);
   margin: 10px 0;
+}
+
+.grid-link:hover {
+  font-weight: bold;
 }
 
 .grid-main-links {
@@ -93,6 +100,13 @@
   max-width: 200px;
 }
 
+.progress-text {
+  font-family: 'TT-InterphasesMono';
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--dark-lilac);
+}
+
 .more-link {
   font-family: 'TT-InterphasesMono';
   font-size: 14px;
@@ -100,4 +114,46 @@
   color: var(--white);
   font-weight: 700;
   cursor: pointer;
+}
+
+.popup-hint {
+  display: flex;
+  position: fixed;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.popup__container {
+  position: relative;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 34px 36px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  align-items: center;
+  color: var(--midnight-gray);
+}
+
+.popup-hint-text {
+  text-align: center;
+  padding-top: 10px;
+  font-family: 'TT-InterphasesMono';
+}
+
+.button-hint {
+  font-family: 'TT-InterphasesMono';
+  margin-top: 20px;
+  padding: 10px;
 }
