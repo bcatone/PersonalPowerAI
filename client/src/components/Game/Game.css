@@ -10,34 +10,10 @@
   padding: 20px;
 }
 
-.game-container {
+.game__container {
   height: 50vh;
-}
-
-.card {
-  background-color: white;
-  border-radius: 8px;
-  height: 68vh;
-  width: 50vh;
-  max-width: 500px;
-  max-height: 800px;
-  grid-area: 1/1;
-  box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.68);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  margin: 20px;
-}
-
-.card-title {
-  font-family: 'PolySansMedium';
-  font-size: 24px;
-  color: var(--darc-lilac);
-}
-
-.full-area {
-  grid-area: 1/1;
+  width: 100%;
+  position: relative;
 }
 
 .grid {
@@ -46,6 +22,12 @@
   position: relative;
 }
 
+.indicators {
+  height: 90vh;
+}
+
+.reactions-container {
+}
 /* .thumbsup,
 .thumbsdown {
   background-color: var(--white);
@@ -70,15 +52,6 @@
 .thumbsdown {
   margin-left: 10px;
 } */
-
-.card-title {
-  transition: color 0.3s ease; /* Add a transition to the color property */
-}
-
-/* Default card title styling */
-.card-title {
-  color: var(--dark-lilac);
-}
 
 /* Animation for glowing effect */
 @keyframes glow {
@@ -107,8 +80,10 @@
   position: absolute;
   z-index: 3;
   cursor: pointer;
-  transition: all 0.2s ease-in;
+  transform-origin: center; /* Set the transform origin to the center of the element */
+  transition: transform 0.2s ease-in; /* Apply transition only to the transform property */
 }
+
 .reactions:hover {
   scale: 1.01;
 }
@@ -120,7 +95,7 @@
   background-size: contain;
   width: 60px;
   height: 60px;
-  transform: translate(80px, 200px);
+  transform: translate(40px, 500px);
 }
 
 .thumbsdown {
@@ -130,7 +105,7 @@
   background-size: contain;
   width: 60px;
   height: 60px;
-  transform: translate(-80px, 220px);
+  transform: translate(-100px, 520px);
 }
 
 .reaction-slash {
@@ -138,13 +113,15 @@
   z-index: 3;
   font-size: 58px;
   /* font-weight: bold; */
-  transform: translate(0, 210px);
+  transform: translate(-10px, 510px);
 }
 .play-hint {
-  font-size: 24px;
+  font-size: 32px;
   color: var(--white);
   font-family: 'TT-InterphasesMono';
-  margin-top: 32px;
+  margin-top: 16px;
+  max-width: 75%;
+  align-self: self-end;
 }
 
 @media (max-width: 480px) {

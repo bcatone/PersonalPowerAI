@@ -13,6 +13,7 @@ import Dashboard from '../Dashboard/Dashboard';
 //import Chat from '../Chat/Chat';
 import Game from '../Game/Game';
 import Match from '../Game/Match/Match';
+import NoMatch from '../Game/NoMatch/NoMatch';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import InfoTooltipEditProfile from '../InfoTooltipEditProfile/InfoTooltipEditProfile';
 import NotFound from '../NotFound/NotFound';
@@ -284,6 +285,22 @@ function App() {
               element={
                 <>
                   <Match />
+                </>
+              }
+            />
+            <Route
+              path={'/no-match'}
+              element={
+                <>
+                  <NoMatch />
+                </>
+              }
+            />
+            <Route
+              path={'/ai-mentor-bot'}
+              element={
+                <>
+                  <NoMatch />
                 </>
               }
             />
