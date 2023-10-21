@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+  margin: auto;
+  min-height: 100vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.inactive-button {
+  pointer-events: none;
+}
+
+.page__wrapper {
+  background-color: var(--gum-purple);
+}

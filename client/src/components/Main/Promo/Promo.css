@@ -1,0 +1,126 @@
+.promo {
+  background: var(--gum-purple);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.promo__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  margin-top: 160px;
+}
+
+.promo__title {
+  color: #fff;
+  text-align: center;
+  font-family: 'PolySansMedium';
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 116%;
+  letter-spacing: -2px;
+  max-width: 870px;
+  margin: 0;
+  padding: 0 0 50px;
+}
+
+.promo__button {
+  max-width: 400px;
+  background-color: var(--white);
+  border: 2px solid var(--teal);
+  border-radius: 2px;
+  box-shadow: 4px 4px 0px 0px #47e0fd;
+}
+
+.promo__link {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: var(--dark-lilac);
+  text-align: center;
+  font-family: 'TT Interphases Pro Trl';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 23.1px */
+  letter-spacing: -0.399px;
+}
+
+.promo__how-it-works {
+  margin-top: 160px;
+  text-align: center;
+}
+.promo__how-it-works-link {
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+  font-family: 'TT Interphases Pro Trl';
+  margin-bottom: 24px;
+}
+
+.promo__how-it-works-arrow {
+  background-image: url(../../../images/downArrowWhite.svg);
+  height: 70px;
+  width: 70px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 20px auto;
+}
+
+@media screen and (max-width: 1023px) {
+  .promo__title {
+    font-size: 50px;
+    margin: 0;
+  }
+
+  .promo__wrappers {
+    position: relative;
+    box-sizing: border-box;
+    background: #f3c1f8;
+    min-height: 524px;
+    padding: 224px 0 240px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .promo__wrappers {
+    padding: 224px 0 244px;
+  }
+  .promo__title {
+    margin-top: 44px;
+    max-width: 300px;
+    font-size: 29px;
+    line-height: 38px;
+    margin: 0 0 -13px 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .promo__wrappers {
+    padding: 142px 0 188px;
+  }
+
+  .promo__wrapper {
+    height: 240px;
+    background-size: contain;
+  }
+
+  .promo__title {
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 39px;
+    letter-spacing: -1.24px;
+    margin: 0 0 -8px 0;
+  }
+}
