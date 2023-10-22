@@ -18,7 +18,7 @@ function Login({ onAuthorization, isLoading }) {
   return (
     <Form
       title="Welcome back!!"
-      buttonText="Login"
+      buttonText="LOGIN"
       linkText=" Register"
       formQues="No account yet?"
       link="/register"

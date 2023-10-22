@@ -31,6 +31,7 @@
 .grid-item-dashboard {
   grid-area: dashboard;
   min-width: 250px;
+  min-height: 84vh;
 }
 
 .grid-item-progress {
@@ -75,6 +76,7 @@
   text-decoration: none;
   color: var(--white);
   margin: 10px 0;
+  z-index: 150;
 }
 
 .grid-link:hover {

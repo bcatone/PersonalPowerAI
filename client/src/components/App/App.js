@@ -17,6 +17,7 @@ import NoMatch from '../Game/NoMatch/NoMatch';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import InfoTooltipEditProfile from '../InfoTooltipEditProfile/InfoTooltipEditProfile';
 import NotFound from '../NotFound/NotFound';
+import MatchList from '../MatchList/MatchList';
 import './App.css';
 
 function App() {
@@ -301,6 +302,14 @@ function App() {
               element={
                 <>
                   <NoMatch />
+                </>
+              }
+            />
+            <Route
+              path={'/match-list'}
+              element={
+                <>
+                  <MatchList />
                 </>
               }
             />

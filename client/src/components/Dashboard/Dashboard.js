@@ -6,6 +6,7 @@ import Chat from '../Chat/Chat';
 // import CurrentUserContext from '../../contexts/CurrentUserContext';
 import './Dashboard.css';
 import Schedule from './Schedules/Schedules';
+import DashboardSection from './DashboardSection';
 import Footer from '../Footer/Footer';
 
 function Dashboard() {
@@ -22,34 +23,7 @@ function Dashboard() {
       <Header />
       <section className="dashboard">
         <div class="grid-container">
-          <div class="grid-item grid-item-dashboard">
-            <h3 class="grid-item-name dark">Dashboard</h3>
-            <div className="grid-main-links">
-              <Link className="grid-link" to="/profile">
-                Profile
-              </Link>
-              <Link className="grid-link" to="/mentors">
-                Mentors
-              </Link>
-              <Link className="grid-link" to="/learning-community">
-                Learning Community
-              </Link>
-              <Link className="grid-link" to="/messages">
-                Messages
-              </Link>
-              <Link className="grid-link" to="/projects">
-                Projects
-              </Link>
-            </div>
-            <div className="grid-bottom-links">
-              <Link className="grid-link" to="/settings">
-                Settings
-              </Link>
-              <Link className="grid-link" to="/signout">
-                signOut
-              </Link>
-            </div>
-          </div>
+          <DashboardSection />
           <div className="grid-item grid-item-progress">
             <h3 className="grid-item-name">Progress</h3>
             <p className="progress-text">
