@@ -1,0 +1,123 @@
+.match {
+  height: 100vh;
+  background: var(--gum-purple);
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.logo_place_match {
+  margin-right: auto; /* Pushes the logo to the left */
+}
+
+.whinking {
+  padding-top: 24px;
+  max-width: 170px;
+}
+
+.match__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 320px;
+  text-align: center;
+  padding-bottom: 50px;
+  margin-top: 250px;
+}
+
+.logo_place_match {
+}
+
+.match__title {
+  color: #fff;
+  text-align: center;
+  font-family: "PolySansMedium";
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 116%;
+  letter-spacing: -2px;
+  max-width: 870px;
+  margin: 0;
+  padding: 0 0 10px;
+}
+
+.match__button {
+  max-width: 400px;
+  background-color: var(--white);
+  border: 2px solid var(--teal);
+  border-radius: 2px;
+  margin-top: 120px;
+}
+
+.match__button:hover {
+  box-shadow: 4px 4px 0px 0px #47e0fd;
+}
+
+.match__link {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #241153;
+  text-align: center;
+  font-family: TT Interphases Pro Trl;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 23.1px */
+  letter-spacing: -0.399px;
+}
+
+@media screen and (max-width: 1023px) {
+  .match__title {
+    font-size: 50px;
+    margin: 0;
+  }
+
+  .match__wrappers {
+    position: relative;
+    box-sizing: border-box;
+    background: #f3c1f8;
+    min-height: 524px;
+    padding: 224px 0 240px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .match__wrappers {
+    padding: 224px 0 244px;
+  }
+  .match__title {
+    margin-top: 44px;
+    max-width: 300px;
+    font-size: 29px;
+    line-height: 38px;
+    margin: 0 0 -13px 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .match__wrappers {
+    padding: 142px 0 188px;
+  }
+
+  .match__wrapper {
+    height: 240px;
+    background-size: contain;
+  }
+
+  .match__title {
+    font-size: 31px;
+    font-weight: 400;
+    line-height: 39px;
+    letter-spacing: -1.24px;
+    margin: 0 0 -8px 0;
+  }
+}
