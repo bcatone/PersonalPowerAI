@@ -7,7 +7,8 @@
   align-items: center;
   margin: 0 auto;
   text-align: center;
-  padding: 20px;
+  padding: 5px;
+  padding-bottom: 20px;
 }
 
 .game__container {
@@ -93,9 +94,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 60px;
-  height: 60px;
-  transform: translate(40px, 500px);
+  width: 7vw;
+  height: 7vh;
+  transform: translate(40px, 480px);
 }
 
 .thumbsdown {
@@ -103,9 +104,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 60px;
-  height: 60px;
-  transform: translate(-100px, 520px);
+  width: 7vw;
+  height: 7vh;
+  transform: translate(-138px, 500px);
 }
 
 .reaction-slash {
@@ -113,16 +114,16 @@
   z-index: 3;
   font-size: 58px;
   /* font-weight: bold; */
-  transform: translate(-10px, 510px);
+  transform: translate(-10px, 480px);
 }
 .play-hint {
   font-size: 32px;
   color: var(--white);
   font-family: 'TT-InterphasesMono';
   margin-top: 16px;
-  max-width: 75%;
+  max-width: 68%;
   align-self: self-end;
-  padding-bottom: 14px;
+  padding-bottom: 4px;
 }
 
 @media (max-width: 480px) {

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function MatchList() {
   const navigate = useNavigate();
+  let isLoggedIn = true;
 
   // Handle link clicks and log the route
   const handleLinkClick = route => {
@@ -16,7 +17,7 @@ function MatchList() {
 
   return (
     <>
-      <Header />
+      <Header isloggedIn={isLoggedIn} />
       <div className="dash-cont">
         <DashboardSection onLinkClick={handleLinkClick} />
       </div>

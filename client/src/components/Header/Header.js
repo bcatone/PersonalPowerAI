@@ -7,12 +7,10 @@ import PropTypes from 'prop-types';
 
 const Header = ({ isLoggedIn }) => {
   const location = useLocation();
-  const isGameRoute = location.pathname === '/game'; //define the route later!!!
+  const isGameRoute = location.pathname === '/game';
 
   return (
-    <header
-      className={`header${isGameRoute ? ' header_theme_transparent' : ' header_theme_purple'}`}
-    >
+    <header className={`header${isGameRoute ? ' header_theme_purple' : ' header_theme_purple'}`}>
       <div className="header__container limits-container">
         <Link to="/">
           <img src={logo} alt="logotype Personal Power" className="header__logo" />
@@ -27,7 +25,7 @@ export default Header;
 
 // Define PropTypes
 Header.propTypes = {
-  isAuthorized: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired
 };
 
 // import React from 'react';

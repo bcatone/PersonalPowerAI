@@ -6,7 +6,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { PATTERN_REGEX_EMAIL } from '../../utils/constants';
 import './Profile.css';
 
-function Profile({ loggedIn, isLoading, onUpdateUser, signOut }) {
+function Profile({ isloggedIn, isLoading, onUpdateUser, signOut }) {
   const currentUser = useContext(CurrentUserContext);
   const { enteredValues, errors, handleChangeInput, isFormValid, resetForm } = useForm();
   const [isLastValues, setIsLastValues] = useState(false);
@@ -38,7 +38,7 @@ function Profile({ loggedIn, isLoading, onUpdateUser, signOut }) {
 
   return (
     <>
-      <Header loggedIn={loggedIn} />
+      <Header loggedIn={isLoggedIn} />
       <section className="profile">
         <h3 className="profile__title">Hello, {currentUser.name}!</h3>
         <form className="profile__forma" id="form" onSubmit={setEditUserInfo} noValidate>

@@ -27,9 +27,9 @@ body {
 }
 
 .limits-container {
-  max-width: 1140px;
+  max-width: 1280px;
   width: calc(100% - 70 * 2px);
-  margin: 0 auto;
+  margin: 0;
 }
 
 .section-title {

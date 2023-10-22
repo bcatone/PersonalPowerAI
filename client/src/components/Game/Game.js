@@ -25,6 +25,7 @@ function Game() {
   const [swipeDirection, setSwipeDirection] = useState(null);
   const [likedCardCount, setLikedCardCount] = useState(0);
   const [dislikedCardCount, setDislikedCardCount] = useState(0);
+  let isLoggedIn = true;
 
   useEffect(() => {
     const shuffledTopics = shuffleArray(socialGoodTopics);
@@ -95,7 +96,7 @@ function Game() {
 
   return (
     <>
-      <Header />
+      <Header loggedIn={isLoggedIn} />
       <section className="game">
         <div className="game__container">
           <div className="middle grid">

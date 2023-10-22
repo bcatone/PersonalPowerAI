@@ -18,9 +18,11 @@ function Dashboard() {
     setIsPopupVisible(!isPopupVisible);
   };
 
+  let isLoggedIn = true;
+
   return (
     <>
-      <Header />
+      <Header loggedIn={isLoggedIn} />
       <section className="dashboard">
         <div class="grid-container">
           <DashboardSection />
