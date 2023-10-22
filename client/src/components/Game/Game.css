@@ -10,77 +10,118 @@
   padding: 20px;
 }
 
-.title {
+.game__container {
+  height: 50vh;
+  width: 100%;
   position: relative;
-  z-index: 1;
-}
-
-.cards,
-.middle {
-  text-align: center;
-}
-
-.card {
-  display: block;
-  border-radius: 8px;
-  max-width: 500px;
-  max-height: 800px;
-  grid-area: 1/1;
-}
-
-.full-area {
-  grid-area: 1/1;
 }
 
 .grid {
   display: grid;
   place-items: center;
-}
-
-.search-input {
-  font-size: 72px;
-}
-
-.search-input::placeholder {
-  color: #323232;
-}
-
-.search-clear,
-.spinner {
-  transition: opacity 0.5s ease;
-  opacity: 0;
-}
-
-.search-clear {
-  cursor: pointer;
   position: relative;
+}
+
+.indicators {
+  height: 90vh;
+}
+
+.reactions-container {
+}
+/* .thumbsup,
+.thumbsdown {
+  background-color: var(--white);
+  border: 2px solid var(--teal);
+  border-radius: 2px;
+  box-shadow: 4px 4px 0px 0px #47e0fd;
+  cursor: pointer;
+  padding: 10px 20px;
+  text-align: center;
+  color: var(--dark-lilac);
+  font-family: 'TT Interphases Pro Trl';
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 110%;
+  letter-spacing: -0.399px;
+} */
+
+/* .thumbsup {
+  margin-right: 10px;
+}
+
+.thumbsdown {
+  margin-left: 10px;
+} */
+
+/* Animation for glowing effect */
+@keyframes glow {
+  0% {
+    color: var(--dark-lilac);
+  }
+  50% {
+    color: #00ff00; /* Green color for thumbs up */
+  }
+  100% {
+    color: var(--dark-lilac);
+  }
+}
+
+/* Apply the glowing animation on thumbs up click */
+.thumbsup.reactions.clicked .card-title {
+  animation: glow 1s linear;
+}
+
+/* Apply the glowing animation on thumbs down click */
+.thumbsdown.reactions.clicked .card-title {
+  animation: glow 1s linear;
+}
+
+.reactions {
+  position: absolute;
   z-index: 3;
+  cursor: pointer;
+  transform-origin: center; /* Set the transform origin to the center of the element */
+  transition: transform 0.2s ease-in; /* Apply transition only to the transform property */
 }
 
-.search-hint,
-.spinner {
-  opacity: 0;
-  transition: opacity 0.5s ease;
+.reactions:hover {
+  scale: 1.01;
 }
 
-.show-hint .search-hint {
-  opacity: 1;
+.thumbsup {
+  background: url(../../images/thumbsup.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 60px;
+  height: 60px;
+  transform: translate(40px, 500px);
 }
 
-.loading .spinner {
-  opacity: 1;
+.thumbsdown {
+  background: url(../../images/thumbsdown.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 60px;
+  height: 60px;
+  transform: translate(-100px, 520px);
 }
 
-.loading .search-hint {
-  opacity: 0;
+.reaction-slash {
+  position: absolute;
+  z-index: 3;
+  font-size: 58px;
+  /* font-weight: bold; */
+  transform: translate(-10px, 510px);
 }
-
-.has-results .search-clear {
-  opacity: 1;
-}
-
-.has-results .title {
-  opacity: 0;
+.play-hint {
+  font-size: 32px;
+  color: var(--white);
+  font-family: 'TT-InterphasesMono';
+  margin-top: 16px;
+  max-width: 75%;
+  align-self: self-end;
 }
 
 @media (max-width: 480px) {
@@ -88,17 +129,12 @@
     font-size: 18px;
   }
 
-  .search-input {
-    font-size: 32px;
-    width: 94vw;
-    line-height: 1;
-    height: 88px;
-  }
-  .video {
+  .card {
     width: 100%;
     padding: 0 32px;
   }
-  .videos {
-    width: 100%;
+
+  .grid {
+    grid-template-columns: 1fr;
   }
 }
