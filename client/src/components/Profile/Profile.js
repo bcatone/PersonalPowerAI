@@ -11,6 +11,8 @@ function Profile({ isloggedIn, isLoading, onUpdateUser, signOut }) {
   const { enteredValues, errors, handleChangeInput, isFormValid, resetForm } = useForm();
   const [isLastValues, setIsLastValues] = useState(false);
 
+  let isLoggedIn = true;
+
   useEffect(() => {
     if (currentUser.name === enteredValues.name && currentUser.email === enteredValues.email) {
       setIsLastValues(true);
@@ -38,7 +40,7 @@ function Profile({ isloggedIn, isLoading, onUpdateUser, signOut }) {
 
   return (
     <>
-      <Header loggedIn={isLoggedIn} />
+      <Header isloggedIn={isLoggedIn} />
       <section className="profile">
         <h3 className="profile__title">Hello, {currentUser.name}!</h3>
         <form className="profile__forma" id="form" onSubmit={setEditUserInfo} noValidate>

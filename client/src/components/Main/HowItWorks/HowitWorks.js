@@ -10,11 +10,14 @@ const HowItWorks = () => {
         <Step
           number={1}
           title="Registration and Profile Setup"
-          description={['Register on our platform and complete your profile.']}
+          description={[
+            'Register on our platform and complete your profile.',
+            'Complete your profile and show us your interests'
+          ]}
         />
         <Step
           number={2}
-          title="AI-Powered Mentorship Matching"
+          title="AI-Powered Matching"
           description={[
             'Play our AI game to find mentors or mentees with similar interests.',
             'Connect with like-minded people'
@@ -30,7 +33,7 @@ const HowItWorks = () => {
         />
         <Step
           number={4}
-          title="Engage in Meaningful Social Good Projects"
+          title="Engage in Social Good Projects"
           description={[
             'Get involved in projects for positive social impact.',
             'Form learning communities with other mentees.'

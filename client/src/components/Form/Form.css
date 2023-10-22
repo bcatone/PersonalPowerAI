@@ -101,8 +101,8 @@
 
 .form__link {
   text-decoration: none;
-  color: #000;
-  font-weight: 400;
+  color: var(--teal);
+  font-weight: bold;
   font-size: 14px;
   line-height: 1;
   padding: 0 10px;
@@ -110,14 +110,14 @@
 
 .form__link_mentor {
   text-decoration: none;
-  color: #000;
-  font-weight: 400;
+  color: var(--teal);
+  font-weight: bold;
   font-size: 14px;
   line-height: 1;
 }
 
 .form__link:hover {
-  color: var(--teal);
+  color: var(--white);
 }
 
 .form__label {

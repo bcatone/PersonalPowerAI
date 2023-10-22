@@ -24,6 +24,12 @@ function Register({ isLoading, registrationUser }) {
     navigate('/game');
   }
 
+  // Function to handle the "Send us a mail!" link click
+  function handleSendEmail() {
+    // Redirect the user to their email client
+    window.location.href = 'mailto:personalpowerai@gmail.com';
+  }
+
   return (
     <Form
       link="/signin"
@@ -32,7 +38,8 @@ function Register({ isLoading, registrationUser }) {
       formQues="Already Registered?"
       linkText=" Sign In"
       formQuesMentor="Are you a Mentor?"
-      linkTextMentor=" Sign Up Here"
+      linkTextMentor=" Send us a mail!"
+      onClickLinkTextMentor={handleSendEmail}
       onSubmit={setEditUserInfo}
       isDisablButton={!isFormValid}
       isLoading={isLoading}

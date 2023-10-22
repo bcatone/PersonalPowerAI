@@ -14,7 +14,31 @@ const socialGoodTopics = [
   'Healthcare for All',
   'Environmental Conservation',
   'Community Development',
-  'Fair Trade Practices'
+  'Fair Trade Practices',
+  'Arts and Culture Preservation',
+  'Tech for Good Initiatives',
+  'Support for People with Disabilities',
+  'Disaster Relief',
+  'Gender Equality in STEM',
+  'Animal Welfare',
+  'Affordable Childcare',
+  'Global Peace and Security',
+  'Hunger and Food Security',
+  'Human Rights Advocacy',
+  'Support for Indigenous Communities',
+  'Anti-Human Trafficking',
+  'Clean Air',
+  'Community Safety',
+  'Crisis Helplines',
+  'LGBTQ+ Rights',
+  'Conservation of Natural Habitats',
+  'Cultural Diversity',
+  'Water Sanitation',
+  'Youth Sports and Recreation',
+  'Literacy Programs',
+  'Sustainable Tourism',
+  'Access to Technology',
+  'Support for Small Businesses'
 ];
 
 function Game() {
@@ -25,6 +49,7 @@ function Game() {
   const [swipeDirection, setSwipeDirection] = useState(null);
   const [likedCardCount, setLikedCardCount] = useState(0);
   const [dislikedCardCount, setDislikedCardCount] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
   let isLoggedIn = true;
 
   useEffect(() => {
@@ -41,13 +66,13 @@ function Game() {
   };
 
   const handleThumbsUp = () => {
-    if (currentCardIndex < cards.length) {
+    if (currentCardIndex < cards.length - 1) {
       setIsInterest(true);
       setSwipeDirection('right');
       setLikedCardCount(likedCardCount + 1);
+      setHasInteracted(true);
 
       if (likedCardCount === 4) {
-        // When the user likes 5 cards, navigate to the "/match" page
         navigate('/match');
       }
 
@@ -59,13 +84,13 @@ function Game() {
   };
 
   const handleThumbsDown = () => {
-    if (currentCardIndex < cards.length) {
-      setIsInterest(false);
+    if (currentCardIndex < cards.length - 1) {
+      setIsInterest(true);
       setSwipeDirection('left');
       setDislikedCardCount(dislikedCardCount + 1);
+      setHasInteracted(true);
 
       if (dislikedCardCount === 4) {
-        // When the user dislikes 5 cards, navigate to the "/no-match" page
         navigate('/no-match');
       }
 
@@ -101,9 +126,9 @@ function Game() {
         <div className="game__container">
           <div className="middle grid">
             <div className="cards grid full-area">
-              {cards.slice(currentCardIndex).map((topic, index) => (
-                <Card key={index} topic={topic} swipeDirection={swipeDirection} />
-              ))}
+              {currentCardIndex < cards.length && (
+                <Card topic={cards[currentCardIndex]} swipeDirection={swipeDirection} />
+              )}
             </div>
             <div className="reactions-container">
               <div className="thumbsup reactions" onClick={handleThumbsUp}></div>
@@ -114,7 +139,7 @@ function Game() {
 
           <div className="indicators grid">
             <span className="play-hint full-area">
-              {isInterest
+              {hasInteracted
                 ? 'Choose as many topics as you want and hit Esc to stop the game'
                 : 'React on the topics to start the game'}
             </span>
@@ -126,6 +151,159 @@ function Game() {
 }
 
 export default Game;
+
+// import React, { useState, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import './Game.css';
+// import Header from '../Header/Header';
+// import Card from './Card/Card';
+
+// const socialGoodTopics = [
+//   'Clean Energy',
+//   'Education for All',
+//   'Gender Equality',
+//   'Access to Clean Water',
+//   'Sustainable Agriculture',
+//   'Poverty Alleviation',
+//   'Healthcare for All',
+//   'Environmental Conservation',
+//   'Community Development',
+//   'Fair Trade Practices',
+//   'Arts and Culture Preservation',
+//   'Tech for Good Initiatives',
+//   'Support for People with Disabilities',
+//   'Disaster Relief',
+//   'Gender Equality in STEM',
+//   'Animal Welfare',
+//   'Affordable Childcare',
+//   'Global Peace and Security',
+//   'Hunger and Food Security',
+//   'Human Rights Advocacy',
+//   'Support for Indigenous Communities',
+//   'Anti-Human Trafficking',
+//   'Clean Air',
+//   'Community Safety',
+//   'Crisis Helplines',
+//   'LGBTQ+ Rights',
+//   'Conservation of Natural Habitats',
+//   'Cultural Diversity',
+//   'Water Sanitation',
+//   'Youth Sports and Recreation',
+//   'Literacy Programs',
+//   'Sustainable Tourism',
+//   'Access to Technology',
+//   'Support for Small Businesses'
+// ];
+
+// function Game() {
+//   const navigate = useNavigate();
+//   const [cards, setCards] = useState([]);
+//   const [currentCardIndex, setCurrentCardIndex] = useState(0);
+//   const [isInterest, setIsInterest] = useState(false);
+//   const [swipeDirection, setSwipeDirection] = useState(null);
+//   const [likedCardCount, setLikedCardCount] = useState(0);
+//   const [dislikedCardCount, setDislikedCardCount] = useState(0);
+//   let isLoggedIn = true;
+
+//   useEffect(() => {
+//     const shuffledTopics = shuffleArray(socialGoodTopics);
+//     setCards(shuffledTopics);
+//   }, []);
+
+//   const shuffleArray = arr => {
+//     for (let i = arr.length - 1; i > 0; i--) {
+//       const j = Math.floor(Math.random() * (i + 1));
+//       [arr[i], arr[j]] = [arr[j], arr[i]];
+//     }
+//     return arr;
+//   };
+
+//   const handleThumbsUp = () => {
+//     if (currentCardIndex < cards.length) {
+//       setIsInterest(true);
+//       setSwipeDirection('right');
+//       setLikedCardCount(likedCardCount + 1);
+
+//       if (likedCardCount === 4) {
+//         // When the user likes 5 cards, navigate to the "/match" page
+//         navigate('/match');
+//       }
+
+//       setTimeout(() => {
+//         setSwipeDirection(null);
+//         changeCard();
+//       }, 500);
+//     }
+//   };
+
+//   const handleThumbsDown = () => {
+//     if (currentCardIndex < cards.length) {
+//       setIsInterest(false);
+//       setSwipeDirection('left');
+//       setDislikedCardCount(dislikedCardCount + 1);
+
+//       if (dislikedCardCount === 4) {
+//         // When the user dislikes 5 cards, navigate to the "/no-match" page
+//         navigate('/no-match');
+//       }
+
+//       setTimeout(() => {
+//         setSwipeDirection(null);
+//         changeCard();
+//       }, 500);
+//     }
+//   };
+
+//   const changeCard = () => {
+//     setCurrentCardIndex(currentCardIndex + 1);
+//   };
+
+//   const handleKeyDown = event => {
+//     if (event.key === 'Escape') {
+//       navigate('/dashboard');
+//     }
+//   };
+
+//   useEffect(() => {
+//     window.addEventListener('keydown', handleKeyDown);
+
+//     return () => {
+//       window.removeEventListener('keydown', handleKeyDown);
+//     };
+//   }, []);
+
+//   return (
+//     <>
+//       <Header loggedIn={isLoggedIn} />
+//       <section className="game">
+//         <div className="game__container">
+//           <div className="middle grid">
+//             <div className="cards grid full-area">
+//               {cards.slice(currentCardIndex).map((topic, index) => (
+//                 <Card key={index} topic={topic} swipeDirection={swipeDirection} />
+//               ))}
+//             </div>
+//             <div className="reactions-container">
+//               <div className="thumbsup reactions" onClick={handleThumbsUp}></div>
+//               <span className="reaction-slash">/</span>
+//               <div className="thumbsdown reactions" onClick={handleThumbsDown}></div>
+//             </div>
+//           </div>
+
+//           <div className="indicators grid">
+//             <span className="play-hint full-area">
+//               {isInterest
+//                 ? 'Choose as many topics as you want and hit Esc to stop the game'
+//                 : 'React on the topics to start the game'}
+//             </span>
+//           </div>
+//         </div>
+//       </section>
+//     </>
+//   );
+// }
+
+// export default Game;
 
 // import React, { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
