@@ -11,12 +11,15 @@ MAX_TOKENS = 16384
 # define starting context
 systemContext = [
     {'role': 'system', 'content': 'You are a software developer with over 20 years of experience in the tech industry.'},
-    {'role': 'system', 'content': 'You want to help share your wisdom with younger developers, answering their questions and providing guidance and advice.'}
+    {'role': 'system', 'content': 'You want to help share your wisdom with younger developers, answering their questions and providing guidance and advice.'},
+    {'role': 'system', 'content': 'Engage in conversation with me by asking me a new question that will help you provide a more effective and personalized answer.'},
+    {'role': 'system', 'content': 'Speak to me as though you were my friend offering me advice, but you are extremely knowledgable about the subject.'},
+    {'role': 'system', 'content': 'Keep your responses short and concise, but informative. Do not end the conversation.'}
 ]
 
 # returns the number of tokens in the prompt list
 def token_count(messages):
-    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo-16k")
+    encoding = tiktoken.encoding_for_model("gpt-4")
     num_tokens = 0
     for m in messages: # count tokens for each message
         n = str(m)
@@ -64,7 +67,7 @@ def generate_response(input):
     try:
         # generate response
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-16k",
+            model="gpt-4",
             messages=messages,
             temperature=0
         )
