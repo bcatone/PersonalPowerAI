@@ -5,13 +5,12 @@ import Header from "../Header/Header";
 import Card from "./Card/Card";
 import card_data from "./card_data";
 import similar_categories from "./similar_categories";
+import mentors_data from "./random_mentors";
 
 const API = "https://matchmaking-api.onrender.com/matches";
 
 const getSimilarCategory = (category) => {
   const similarCategory = similar_categories[category];
-
-  console.log("similarCategory", similarCategory);
 
   return similarCategory[Math.floor(Math.random() * similarCategory.length)];
 };
@@ -39,65 +38,97 @@ const categories = Object.keys(card_data);
 function Game() {
   const navigate = useNavigate();
   const [cards, setCards] = useState([]);
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const [isInterest, setIsInterest] = useState(false);
   const [swipeDirection, setSwipeDirection] = useState(null);
-  const [likedCardCount, setLikedCardCount] = useState(0);
-  const [dislikedCardCount, setDislikedCardCount] = useState(0);
+  const [card, setCard] = useState(Object.keys(card_data)[0]);
+  const [skillsInterests, setSkillsInterests] = useState([]);
+
+  const [menteeData, setMenteeData] = useState([]);
+
+  const [counter, setCounter] = useState(0);
+
+  const [category, setCategory] = useState(Object.keys(card_data)[0]);
+
+  const [stop, setStop] = useState(false);
+
+  const [asked, setAsked] = useState([card]);
+
+  const [matches, setMatches] = useState([]);
+
   const [hasInteracted, setHasInteracted] = useState(false);
+
   let isLoggedIn = true;
 
-  useEffect(() => {
-    const shuffledTopics = shuffleArray(socialGoodTopics);
-    setCards(shuffledTopics);
-  }, []);
+  const nextSkillInterest = () => {
+    const nextSkillInterest = skillsInterests.shift();
 
-  const shuffleArray = (arr) => {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
+    if (nextSkillInterest) {
+      setSkillsInterests(skillsInterests);
+
+      setCard(nextSkillInterest);
+      setAsked([...asked, nextSkillInterest]);
+    } else {
+      let similarCategory = getSimilarCategory(category);
+
+      while (asked.includes(similarCategory)) {
+        similarCategory = getSimilarCategory(category);
+      }
+
+      setCard(similarCategory);
+      setCategory(similarCategory);
+      setAsked([...asked, similarCategory]);
     }
-    return arr;
   };
 
   const handleThumbsUp = () => {
-    if (currentCardIndex < cards.length - 1) {
-      setIsInterest(true);
-      setSwipeDirection("right");
-      setLikedCardCount(likedCardCount + 1);
-      setHasInteracted(true);
+    setHasInteracted(true);
 
-      if (likedCardCount === 4) {
-        navigate("/match");
+    if (categories.includes(card)) {
+      let randomSkillsInterests = getRandomSkillsInterests(card);
+
+      const firstSkillInterest = randomSkillsInterests.shift();
+      setCard(firstSkillInterest);
+
+      setSkillsInterests(randomSkillsInterests);
+      setAsked([...asked, randomSkillsInterests[0]]);
+    } else {
+      if (counter == 5) {
+        setMenteeData([...menteeData, card]);
+        setCounter(0);
+        setStop(true);
+        return;
+      } else {
+        setCounter(counter + 1);
       }
 
-      setTimeout(() => {
-        setSwipeDirection(null);
-        changeCard();
-      }, 500);
+      nextSkillInterest();
     }
+    setMenteeData([...menteeData, card]);
+    setSwipeDirection("right");
+    setTimeout(() => {
+      setSwipeDirection(null);
+    }, 500);
   };
 
   const handleThumbsDown = () => {
-    if (currentCardIndex < cards.length - 1) {
-      setIsInterest(true);
-      setSwipeDirection("left");
-      setDislikedCardCount(dislikedCardCount + 1);
-      setHasInteracted(true);
+    setHasInteracted(true);
 
-      if (dislikedCardCount === 4) {
-        navigate("/no-match");
+    if (categories.includes(card)) {
+      let similarCategory = getSimilarCategory(card);
+
+      while (asked.includes(similarCategory)) {
+        similarCategory = getSimilarCategory(card);
       }
 
-      setTimeout(() => {
-        setSwipeDirection(null);
-        changeCard();
-      }, 500);
+      setCard(similarCategory);
+      setCategory(similarCategory);
+      setAsked([...asked, similarCategory]);
+    } else {
+      nextSkillInterest();
     }
-  };
-
-  const changeCard = () => {
-    setCurrentCardIndex(currentCardIndex + 1);
+    setSwipeDirection("left");
+    setTimeout(() => {
+      setSwipeDirection(null);
+    }, 500);
   };
 
   const handleKeyDown = (event) => {
@@ -114,6 +145,42 @@ function Game() {
     };
   }, []);
 
+  useEffect(() => {
+    if (stop) {
+      const postMatch = async () => {
+        console.log("menteeData", menteeData);
+        fetch(API, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(menteeData),
+          mode: "cors",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data["matches"].length > 0) {
+              const matches_data = data["matches"].map((match) => {
+                return {
+                  mentor: match["mentor"],
+                  data: mentors_data[match["mentor"]],
+                };
+              });
+              console.log("matches", matches_data);
+              navigate("/match", {
+                state: { matches: matches_data, menteeData: menteeData },
+              });
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      };
+
+      postMatch();
+    }
+  }, [stop]);
+
   return (
     <>
       <Header loggedIn={isLoggedIn} />
@@ -121,12 +188,7 @@ function Game() {
         <div className="game__container">
           <div className="middle grid">
             <div className="cards grid full-area">
-              {currentCardIndex < cards.length && (
-                <Card
-                  topic={cards[currentCardIndex]}
-                  swipeDirection={swipeDirection}
-                />
-              )}
+              <Card topic={card} swipeDirection={swipeDirection} />
             </div>
             <div className="reactions-container">
               <div
