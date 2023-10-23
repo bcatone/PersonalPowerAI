@@ -4,11 +4,9 @@ import tiktoken
 
 # set API key
 openai.api_key=""
-# context
-messages = []
+
 # max token input const
 MAX_TOKENS = 16384
-
 
 # define starting context
 systemContext = [
@@ -17,8 +15,7 @@ systemContext = [
 ]
 
 # returns the number of tokens in the prompt list
-def token_count():
-    global messages
+def token_count(messages):
     encoding = tiktoken.encoding_for_model("gpt-3.5-turbo-16k")
     num_tokens = 0
     for m in messages: # count tokens for each message
@@ -27,8 +24,7 @@ def token_count():
     return num_tokens
 
 # removes old chat messages to reduce token usage (only if equal to or over the limit)
-def token_reduction():
-    global messages
+def token_reduction(messages):
     sys_list = []
     chat_list = []
     for m in messages:
@@ -40,17 +36,31 @@ def token_reduction():
     num_chat = len(chat_list) # determine number of chat messages
     first_index = num_chat // 3 # get index of second third of chat messages
     del chat_list[:first_index] # delete first third of chat messages
-    messages = sys_list + chat_list # redefine context based on reduction
+    return sys_list + chat_list # redefine context based on reduction
 
 # function to generate AI response
-def generate_response():
-    global messages
-    total_tokens = token_count() # get number of tokens used in context
+def generate_response(input):
+    # add previous context
+    messages = systemContext
+    for msg in input.get('context'):
+        if msg.get('type') == 'user':
+            messages.append({'role':'user', 'content':f"{msg.get('message')}"})
+        elif msg.get('type') == 'chatbot':
+            messages.append({'role':'assistant', 'content':f"{msg.get('message')}"})
+        else:
+            continue
+
+    user_input = input.get('newMsg') # get the latest message from the user
+    messages.append({'role':'user', 'content':f"{user_input}"}) # add it to the list of messages
+
+    total_tokens = token_count(messages) # get number of tokens used in context
     # recursively check to see if token count is over the limit
     while (total_tokens >= MAX_TOKENS):
-        token_reduction()
-        total_tokens = token_count() # get number of tokens used in context
-
+        messages = token_reduction()
+        total_tokens = token_count(messages) # get number of tokens used in context
+    
+    # generate response from gpt
+    ai_resp = None
     try:
         # generate response
         response = openai.ChatCompletion.create(
@@ -58,32 +68,23 @@ def generate_response():
             messages=messages,
             temperature=0
         )
+        ai_resp = response.choices[0].message["content"] # get response
+    # catch errors
     except openai.error.APIError as e:
-        return e
+        ai_resp = str(e)
     except openai.error.APIConnectionError as e:
-        return e
+        ai_resp = str(e)
     except openai.error.Timeout as e:
-        return e
+        ai_resp = str(e)
     except openai.error.RateLimitError as e:
-        return e
+        ai_resp = str(e)
     except openai.error.InvalidRequestError as e:
-        return e
+        ai_resp = str(e)
     except openai.error.AuthenticationError as e:
-        return e
+        ai_resp = str(e)
     except openai.error.ServiceUnavailableError as e:
-        return e
+        ai_resp = str(e)
 
-    ai_resp = response.choices[0].message["content"] # get response
-    return ai_resp
+    messages.append({'role':'assistant', 'content':f"{ai_resp}"})
 
-# initial output
-print("Mentor: Hello! I'm your AI mentor. How can I help you?")
-messages = systemContext # add original context to prompt list
-while True:
-    user_input = input("User: ") # get user input
-    if user_input.lower() == 'exit': # if the user wants to quit, exit program
-        break
-    messages.append({'role':'user', 'content':f"{user_input}"}) # add newest message to context
-    response = generate_response() # generate response
-    messages.append({'role':'assistant', 'content':f"{response}"}) # add AI response to context (chat memory)
-    print("Mentor:", response) # output response
+    return {'ai': ai_resp, 'history': messages}
