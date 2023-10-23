@@ -18,6 +18,9 @@ function DashboardSection() {
         <Link className="grid-link" to="/messages">
           Messages
         </Link>
+        <Link className="grid-link" to="/ai-mentor-bot">
+          AI Mentor
+        </Link>
         <Link className="grid-link" to="/projects">
           Projects
         </Link>

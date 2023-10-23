@@ -18,6 +18,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import InfoTooltipEditProfile from '../InfoTooltipEditProfile/InfoTooltipEditProfile';
 import NotFound from '../NotFound/NotFound';
 import MatchList from '../MatchList/MatchList';
+import MentorBot from '../MentorBot/MentorBot';
 import './App.css';
 
 function App() {
@@ -313,6 +314,15 @@ function App() {
                 </>
               }
             />
+            <Route
+              path={'/mentorbot'}
+              element={
+                <>
+                  <MentorBot />
+                </>
+              }
+            />
+
             {/* <Route
               path={'/chat'}
               element={

@@ -140,3 +140,17 @@
     grid-template-columns: 1fr;
   }
 }
+
+.play-how-to {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--dark-lilac);
+  font-size: 32px;
+  z-index: 2000;
+  cursor: pointer;
+  background-color: var(--teal);
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}

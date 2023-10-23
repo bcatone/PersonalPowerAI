@@ -7,14 +7,24 @@ import PropTypes from 'prop-types';
 
 const Header = ({ isLoggedIn }) => {
   const location = useLocation();
-  const isGameRoute = location.pathname === '/game';
+  const isMainRoute = location.pathname === '/'; // Replace '/main' with the actual route of your Main page
 
   return (
-    <header className={`header${isGameRoute ? ' header_theme_purple' : ' header_theme_purple'}`}>
+    <header className={`header${isMainRoute ? ' header_theme_purple' : ' header_theme_purple'}`}>
       <div className="header__container limits-container">
         <Link to="/">
           <img src={logo} alt="logotype Personal Power" className="header__logo" />
         </Link>
+        {isLoggedIn ? ( // If the user is logged in
+          <Link to="/dashboard" className="header__link">
+            Dashboard
+          </Link>
+        ) : isMainRoute ? ( // Only show "Sign In" on the Main page
+          <Link to="/signin" className="header__link">
+            Sign In
+          </Link>
+        ) : null}{' '}
+        {/* If not Main and not logged in, render nothing */}
         <Navigation isLoggedIn={isLoggedIn} />
       </div>
     </header>
@@ -27,6 +37,35 @@ export default Header;
 Header.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired
 };
+// import React from 'react';
+// import { Link, useLocation } from 'react-router-dom';
+// import './Header.css';
+// import logo from '../../images/logo.svg';
+// import Navigation from '../Navigation/Navigation';
+// import PropTypes from 'prop-types';
+
+// const Header = ({ isLoggedIn }) => {
+//   const location = useLocation();
+//   const isGameRoute = location.pathname === '/game';
+
+//   return (
+//     <header className={`header${isGameRoute ? ' header_theme_purple' : ' header_theme_purple'}`}>
+//       <div className="header__container limits-container">
+//         <Link to="/">
+//           <img src={logo} alt="logotype Personal Power" className="header__logo" />
+//         </Link>
+//         <Navigation isLoggedIn={isLoggedIn} />
+//       </div>
+//     </header>
+//   );
+// };
+
+// export default Header;
+
+// // Define PropTypes
+// Header.propTypes = {
+//   isLoggedIn: PropTypes.bool.isRequired
+// };
 
 // import React from 'react';
 // import { Link, NavLink } from 'react-router-dom';

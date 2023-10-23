@@ -3,9 +3,10 @@
   padding: 0;
   min-height: 52px;
   display: flex;
+  justify-content: space-around;
   align-items: center;
   background: var(--gum-purple);
-  padding-left: 70px;
+  padding: 0 70px;
 }
 
 .header_theme_purple {
@@ -52,6 +53,17 @@
   color: var(--teal);
 }
 
+.header__link {
+  text-decoration: none;
+  font-family: 'PolySansNeutral';
+  font-size: 20px;
+  color: var(--white);
+  transition: all 0.3s ease-in;
+}
+
+.header__link:hover {
+  color: var(--teal);
+}
 /* .header__button-black {
   color: #fff;
   background-color: #000;

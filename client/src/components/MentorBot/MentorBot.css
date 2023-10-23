@@ -1,0 +1,104 @@
+.chat-wrapper {
+  margin: 100px auto;
+  padding: 20px;
+
+  background-color: var(--white);
+  border-radius: 20px;
+
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.chatbot-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chatbot-input {
+  display: flex;
+  padding: 5px;
+  height: 45px;
+  margin: 14px 0;
+}
+
+.chat-submit-button {
+  background-color: var(--gum-purple);
+  border: 2px solid var(--teal);
+  color: var(--white);
+  border-radius: 2px;
+  margin-top: 120px;
+  font-family: 'PolySansMedium';
+  font-size: 20px;
+  background-color: var(--gum-purple);
+  color: var(--white);
+  padding: 10px 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.chat-submit-button:hover {
+  background-color: var(--teal);
+}
+
+.chatbot-h1 {
+  font-family: 'PolySansMedium';
+  font-size: 32px;
+  font-weight: bold;
+  align-self: baseline;
+}
+
+/* 
+this are some default styles I try to rewrite but normally I would only usee classnames! */
+
+/* button {
+  background-color: var(--gum-purple);
+  color: var(--white);
+  padding: 10px 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+} */
+
+/* Style for the container of user messages */
+.user-container {
+  display: flex;
+  justify-content: flex-end; /* Right-align user messages */
+  margin: 10px 0;
+  min-width: 300px;
+}
+
+/* Style for the container of assistant messages */
+.assistant-container {
+  display: flex;
+  justify-content: flex-start; /* Left-align assistant messages */
+  margin: 10px 0;
+  min-width: 300px;
+}
+
+/* Style for user messages */
+.user {
+  background-color: var(--gum-purple); /* User messages */
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 70%; /* Adjust this to your preference */
+  margin: 20px 0;
+}
+
+/* Style for assistant messages */
+.assistant {
+  background-color: var(--dove-gray); /* Assistant messages */
+  color: black; /* Change text color for assistant messages */
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 70%; /* Adjust this to your preference */
+  margin: 20px 0;
+}
+
+.chatbox {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+}

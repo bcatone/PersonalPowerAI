@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link as ScrollLink, Element, animateScroll as scroll } from 'react-scroll'; // Import ScrollLink and Element
 import './Game.css';
 import Header from '../Header/Header';
 import Card from './Card/Card';
+import HowItWorks from '../Main/HowItWorks/HowitWorks';
 
 const socialGoodTopics = [
   'Clean Energy',
@@ -50,6 +52,7 @@ function Game() {
   const [likedCardCount, setLikedCardCount] = useState(0);
   const [dislikedCardCount, setDislikedCardCount] = useState(0);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [showHowItWorks, setShowHowItWorks] = useState(false); // State to control the visibility of HowItWorks
   let isLoggedIn = true;
 
   useEffect(() => {
@@ -58,6 +61,7 @@ function Game() {
   }, []);
 
   const shuffleArray = arr => {
+    // Shuffle function
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -111,6 +115,22 @@ function Game() {
     }
   };
 
+  const toggleHowItWorks = () => {
+    setShowHowItWorks(!showHowItWorks);
+  };
+
+  const scrollToHowItWorks = () => {
+    // Assign the animateScroll function from react-scroll to a different variable
+    const scrollFunction = scroll;
+
+    // Scroll to the "HowItWorks" section smoothly
+    scrollFunction.scrollTo('how-it-works', {
+      duration: 500,
+      smooth: 'easeInOutQuint'
+    });
+    toggleHowItWorks(); // Toggle the visibility of HowItWorks component
+  };
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
@@ -136,8 +156,12 @@ function Game() {
               <div className="thumbsdown reactions" onClick={handleThumbsDown}></div>
             </div>
           </div>
-
           <div className="indicators grid">
+            <ScrollLink to="how-it-works" smooth={true} duration={500}>
+              <div className="play-how-to" onClick={scrollToHowItWorks}>
+                ?
+              </div>
+            </ScrollLink>
             <span className="play-hint full-area">
               {hasInteracted
                 ? 'Choose as many topics as you want and hit Esc to stop the game'
@@ -146,12 +170,12 @@ function Game() {
           </div>
         </div>
       </section>
+      <Element name="how-it-works">{showHowItWorks && <HowItWorks />}</Element>
     </>
   );
 }
 
 export default Game;
-
 // import React, { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import './Game.css';
