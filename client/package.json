@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.1",
     "express": "^4.18.2",
+    "js-tiktoken": "^1.0.7",
+    "openai": "^4.12.4",
     "react": "^18.2.0",
     "react-chat-elements": "^12.0.10",
     "react-dom": "^18.2.0",

@@ -1,0 +1,9 @@
+.dash-cont {
+  margin-top: 10px;
+  margin-left: 20px;
+  max-width: 250px;
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  min-height: 80vh;
+}

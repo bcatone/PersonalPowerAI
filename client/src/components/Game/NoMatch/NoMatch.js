@@ -16,7 +16,7 @@ function NoMatch() {
           <img className="whinking" src={whinking} alt="whinking face" />
         </div>
         <div className="match__button">
-          <Link className="match__link" to="/ai-mentor-bot">
+          <Link className="match__link" to="/mentorbot">
             UNLEASH AI MENTOR AVATAR!
           </Link>
         </div>

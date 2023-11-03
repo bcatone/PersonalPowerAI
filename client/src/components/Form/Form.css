@@ -27,7 +27,7 @@
 .forma {
   display: flex;
   flex-direction: column;
-  min-height: 70vh;
+  min-height: 80%;
   width: 100%;
 }
 
@@ -52,11 +52,13 @@
   font-weight: 600;
   line-height: 110%; /* 23.1px */
   letter-spacing: -0.399px;
+  margin: 0;
 }
 
 .form__button-save:hover {
   background-color: var(--white);
   box-shadow: 4px 4px 0px 0px var(--dark-lilac);
+  margin: 0;
 }
 
 .form__button-save_inactive {
@@ -71,15 +73,18 @@
   line-height: 110%; /* 23.1px */
   letter-spacing: -0.399px;
   opacity: 0.3;
+  margin: 0;
 }
 
 .form__button-save_loading {
   pointer-events: none;
   opacity: 0.6;
+  margin: 0;
 }
 
 .form__text {
   padding-top: 16px;
+  padding-bottom: 10px;
   text-align: center;
   font-weight: 400;
   font-size: 14px;
@@ -96,8 +101,8 @@
 
 .form__link {
   text-decoration: none;
-  color: #000;
-  font-weight: 400;
+  color: var(--teal);
+  font-weight: bold;
   font-size: 14px;
   line-height: 1;
   padding: 0 10px;
@@ -105,14 +110,14 @@
 
 .form__link_mentor {
   text-decoration: none;
-  color: #000;
-  font-weight: 400;
+  color: var(--teal);
+  font-weight: bold;
   font-size: 14px;
   line-height: 1;
 }
 
 .form__link:hover {
-  color: var(--teal);
+  color: var(--white);
 }
 
 .form__label {
