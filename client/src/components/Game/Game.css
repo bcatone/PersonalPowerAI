@@ -119,7 +119,7 @@
 .play-hint {
   font-size: 32px;
   color: var(--white);
-  font-family: 'TT-InterphasesMono';
+  font-family: "TT-InterphasesMono";
   margin-top: 16px;
   max-width: 68%;
   align-self: self-end;

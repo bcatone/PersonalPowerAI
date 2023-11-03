@@ -1,25 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../Header/Header';
-import Main from '../Main/Main';
-import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import Footer from '../Footer/Footer';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
-import Register from '../Register/Register';
-import Login from '../Login/Login';
-import * as api from '../../utils/MainApi';
-import Profile from '../Profile/Profile';
-import Dashboard from '../Dashboard/Dashboard';
-//import Chat from '../Chat/Chat';
-import Game from '../Game/Game';
-import Match from '../Game/Match/Match';
-import NoMatch from '../Game/NoMatch/NoMatch';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import InfoTooltipEditProfile from '../InfoTooltipEditProfile/InfoTooltipEditProfile';
-import NotFound from '../NotFound/NotFound';
-import MatchList from '../MatchList/MatchList';
-import MentorBot from '../MentorBot/MentorBot';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import {
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Footer from "../Footer/Footer";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import Register from "../Register/Register";
+import Login from "../Login/Login";
+import * as api from "../../utils/MainApi";
+import Profile from "../Profile/Profile";
+import Dashboard from "../Dashboard/Dashboard";
+import Chat from "../Chat/Chat";
+import Game from "../Game/Game";
+import Match from "../Game/Match/Match";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
+import InfoTooltipEditProfile from "../InfoTooltipEditProfile/InfoTooltipEditProfile";
+import NotFound from "../NotFound/NotFound";
+import "./App.css";
 
 function App() {
   const navigate = useNavigate();
@@ -31,7 +34,10 @@ function App() {
   const [isUpdate, setIsUpdate] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isInfoToolTipPopupOpen, setInfoToolTipPopupOpen] = useState(false);
-  const [isInfoTooltipEditProfilePopupOpen, setInfoTooltipEditProfilePopupOpen] = useState(false);
+  const [
+    isInfoTooltipEditProfilePopupOpen,
+    setInfoTooltipEditProfilePopupOpen,
+  ] = useState(false);
 
   // show data on auth
   // useEffect(() => {
@@ -56,18 +62,18 @@ function App() {
   // }, [isLoggedIn]);
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
+    const jwt = localStorage.getItem("jwt");
     if (jwt) {
       api
         .getContent(jwt)
-        .then(res => {
+        .then((res) => {
           if (res) {
             setIsLoggedIn(true);
             // localStorage.removeItem('allMovies');
           }
           navigate(path);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     }
@@ -83,7 +89,7 @@ function App() {
         setInfoToolTipPopupOpen(true);
         setIsSuccess(true);
       })
-      .catch(error => {
+      .catch((error) => {
         setInfoToolTipPopupOpen(true);
         setIsSuccess(false);
         console.log(error);
@@ -98,16 +104,16 @@ function App() {
     setIsLoading(true);
     api
       .authorize(email, password)
-      .then(res => {
+      .then((res) => {
         if (res) {
           setIsSuccess(true);
           setInfoToolTipPopupOpen(true);
-          localStorage.setItem('jwt', res.token);
-          navigate('/dashboard', { replace: true });
+          localStorage.setItem("jwt", res.token);
+          navigate("/dashboard", { replace: true });
           setIsLoggedIn(true);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         setInfoToolTipPopupOpen(true);
         setIsSuccess(false);
         console.log(error);
@@ -150,12 +156,12 @@ function App() {
     setIsLoading(true);
     api
       .setUserInfo(userInfo)
-      .then(data => {
+      .then((data) => {
         setInfoTooltipEditProfilePopupOpen(true);
         setIsUpdate(true);
         setCurrentUser(data);
       })
-      .catch(error => {
+      .catch((error) => {
         setInfoTooltipEditProfilePopupOpen(true);
         setIsUpdate(false);
         console.log(error);
@@ -168,7 +174,7 @@ function App() {
 
   // handle auth error
   function handleAuthorizationError(error) {
-    if (error === 'Error: 401') {
+    if (error === "Error: 401") {
       handleLogout();
     }
   }
@@ -185,14 +191,14 @@ function App() {
   // Close on ESC
   useEffect(() => {
     function closeByEscapePopups(evt) {
-      if (evt.key === 'Escape') {
+      if (evt.key === "Escape") {
         closeAllPopups();
       }
     }
     if (isOpen) {
-      document.addEventListener('keydown', closeByEscapePopups);
+      document.addEventListener("keydown", closeByEscapePopups);
       return () => {
-        document.removeEventListener('keydown', closeByEscapePopups);
+        document.removeEventListener("keydown", closeByEscapePopups);
       };
     }
   }, [isOpen]);
@@ -207,13 +213,13 @@ function App() {
   // When you logout all the data is cleaned
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('movies');
-    localStorage.removeItem('movieSearch');
-    localStorage.removeItem('shortMovies');
-    localStorage.removeItem('allMovies');
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("movies");
+    localStorage.removeItem("movieSearch");
+    localStorage.removeItem("shortMovies");
+    localStorage.removeItem("allMovies");
     localStorage.clear();
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -222,7 +228,7 @@ function App() {
         <div className="page__wrapper page__container">
           <Routes>
             <Route
-              path={'/'}
+              path={"/"}
               element={
                 <>
                   <Header loggedIn={isLoggedIn} />
@@ -232,7 +238,7 @@ function App() {
               }
             />
             <Route
-              path={'/signin'}
+              path={"/signin"}
               element={
                 isLoggedIn ? (
                   <Navigate to="/dashboard" replace />
@@ -242,18 +248,21 @@ function App() {
               }
             />
             <Route
-              path={'/register'}
+              path={"/register"}
               element={
                 isLoggedIn ? (
                   <Navigate to="/game" replace />
                 ) : (
-                  <Register isLoading={isLoading} registrationUser={registrationUser} />
+                  <Register
+                    isLoading={isLoading}
+                    registrationUser={registrationUser}
+                  />
                 )
               }
             />
             {/* not protected */}
-            {/* <Route
-              path={'/dashboard'}
+            <Route
+              path={"/dashboard"}
               element={
                 !isLoggedIn ? (
                   <Navigate to="/dashboard" replace />
@@ -267,7 +276,7 @@ function App() {
               element={!isLoggedIn ? <Dashboard /> : <Navigate to="/signin" replace />}
             />
             <Route
-              path={'/profile'}
+              path={"/profile"}
               element={
                 <>
                   <Profile />
@@ -275,7 +284,7 @@ function App() {
               }
             />
             <Route
-              path={'/game'}
+              path={"/game"}
               element={
                 <>
                   <Game />
@@ -283,7 +292,7 @@ function App() {
               }
             />
             <Route
-              path={'/match'}
+              path={"/match"}
               element={
                 <>
                   <Match />
@@ -379,8 +388,8 @@ function App() {
                 />
               }
             /> */}
-            <Route path={'*'} element={<NotFound />} />
-            <Route path={'*'} element={<NotFound />} />
+            <Route path={"*"} element={<NotFound />} />
+            <Route path={"*"} element={<NotFound />} />
           </Routes>
           <InfoTooltip
             isSuccess={isSuccess}

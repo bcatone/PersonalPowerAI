@@ -41,5 +41,9 @@ module PersonalPowerAI
 
     # Use SameSite=Strict for all cookies to help protect against CSRF
     config.action_dispatch.cookies_same_site_protection = :strict
+
+    config.passage_app_id = ENV['PASSAGE_APP_ID']
+    config.passage_api_key = ENV['PASSAGE_API_KEY']
+    config.openai_access_token = ENV['OPENAI_ACCESS_TOKEN']
   end
 end

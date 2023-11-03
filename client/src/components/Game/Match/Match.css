@@ -1,7 +1,8 @@
 .match {
-  height: 100vh;
   background: var(--gum-purple);
-  min-height: 86vh;
+  // height: 100vh;
+  // background: var(--gum-purple);
+  // min-height: 86vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,8 +16,9 @@
 }
 
 .fireworks {
-  padding-bottom: 24px;
-  padding-left: 40px;
+  margin: 20px;
+  // padding-bottom: 24px;
+  // padding-left: 40px;
   max-width: 170px;
 }
 
@@ -27,10 +29,12 @@
   align-items: center;
   background-position: center;
   background-repeat: no-repeat;
-  height: 320px;
   text-align: center;
   padding-bottom: 50px;
-  margin-top: 250px;
+  // height: 320px;
+  // text-align: center;
+  // padding-bottom: 50px;
+  // margin-top: 250px;
 }
 
 .logo_place_match {
@@ -39,23 +43,41 @@
 .match__title {
   color: #fff;
   text-align: center;
-  font-family: 'PolySansMedium';
-  font-size: 64px;
+  font-family: "PolySansMedium";
+  font-size: 48px;
   font-style: normal;
   font-weight: 500;
-  line-height: 116%;
+
   letter-spacing: -2px;
-  max-width: 870px;
-  margin: 0;
-  padding: 0 0 10px;
+
+  margin: 20px;
+  padding: 20px;
 }
 
 .match__button {
-  max-width: 400px;
   background-color: var(--white);
   border: 2px solid var(--teal);
   border-radius: 2px;
-  margin-top: 120px;
+  padding: 20px;
+
+  margin: 20px;
+  // font-family: 'PolySansMedium';
+  // font-size: 64px;
+  // font-style: normal;
+  // font-weight: 500;
+  // line-height: 116%;
+  // letter-spacing: -2px;
+  // max-width: 870px;
+  // margin: 0;
+  // padding: 0 0 10px;
+}
+
+.match__button {
+  // max-width: 400px;
+  // background-color: var(--white);
+  // border: 2px solid var(--teal);
+  // border-radius: 2px;
+  // margin-top: 120px;
 }
 
 .match__button:hover {
@@ -121,4 +143,40 @@
     letter-spacing: -1.24px;
     margin: 0 0 -8px 0;
   }
+}
+
+.user-card {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+}
+
+.user-name {
+  margin-top: 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+.pill-container {
+  margin-top: 20px;
+}
+
+.pill {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+  font-size: 18px;
+}
+
+.card-container {
+  display: flex;
+
+  justify-content: space-between;
+  flex-direction: row;
 }

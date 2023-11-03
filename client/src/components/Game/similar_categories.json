@@ -1,0 +1,212 @@
+{
+  "Computer Science": [
+    "Data Science",
+    "Information Technology",
+    "Education",
+    "Mathematics",
+    "Community Development"
+  ],
+  "Electrical Engineering": [
+    "Civil Engineering",
+    "Computer Science",
+    "Mechanical Engineering",
+    "Mathematics",
+    "Education"
+  ],
+  "Mechanical Engineering": [
+    "Civil Engineering",
+    "Robotics",
+    "Physics",
+    "Aerospace Engineering",
+    "Mathematics"
+  ],
+  "Civil Engineering": [
+    "Mechanical Engineering",
+    "Electrical Engineering",
+    "Computer Science",
+    "Geology",
+    "Community Development"
+  ],
+  "Biomedical Engineering": [
+    "Biochemistry",
+    "Mechanical Engineering",
+    "Robotics",
+    "Education",
+    "Chemistry"
+  ],
+  "Environmental Science": [
+    "Environment",
+    "Computer Science",
+    "Chemistry",
+    "Data Science",
+    "Community Development"
+  ],
+  "Mathematics": [
+    "Education",
+    "Computer Science",
+    "Data Science",
+    "Physics",
+    "Robotics"
+  ],
+  "Chemistry": [
+    "Biochemistry",
+    "Mathematics",
+    "Environmental Science",
+    "Data Science",
+    "Education"
+  ],
+  "Physics": [
+    "Mathematics",
+    "Mechanical Engineering",
+    "Education",
+    "Robotics",
+    "Aerospace Engineering"
+  ],
+  "Aerospace Engineering": [
+    "Mechanical Engineering",
+    "Physics",
+    "Civil Engineering",
+    "Mathematics",
+    "Electrical Engineering"
+  ],
+  "Data Science": [
+    "Computer Science",
+    "Information Technology",
+    "Mathematics",
+    "Education",
+    "Community Development"
+  ],
+  "Information Technology": [
+    "Data Science",
+    "Computer Science",
+    "Education",
+    "Arts and Culture",
+    "Mathematics"
+  ],
+  "Robotics": [
+    "Mechanical Engineering",
+    "Education",
+    "Computer Science",
+    "Mathematics",
+    "Physics"
+  ],
+  "Geology": [
+    "Chemistry",
+    "Civil Engineering",
+    "Mathematics",
+    "Physics",
+    "Environmental Science"
+  ],
+  "Biochemistry": [
+    "Chemistry",
+    "Biomedical Engineering",
+    "Health and Wellness",
+    "Mathematics",
+    "Education"
+  ],
+  "Education": [
+    "Mathematics",
+    "Community Development",
+    "Computer Science",
+    "Arts and Culture",
+    "Information Technology"
+  ],
+  "Environment": [
+    "Environmental Science",
+    "Community Development",
+    "Education",
+    "Computer Science",
+    "Chemistry"
+  ],
+  "Health and Wellness": [
+    "Education",
+    "Poverty Alleviation",
+    "Elderly Care",
+    "Mathematics",
+    "Community Development"
+  ],
+  "Social Justice": [
+    "Community Development",
+    "Poverty Alleviation",
+    "Education",
+    "Youth Empowerment",
+    "Computer Science"
+  ],
+  "Poverty Alleviation": [
+    "Community Development",
+    "Education",
+    "Social Justice",
+    "Humanitarian Aid",
+    "Data Science"
+  ],
+  "Community Development": [
+    "Education",
+    "Social Justice",
+    "Environment",
+    "Computer Science",
+    "Poverty Alleviation"
+  ],
+  "Humanitarian Aid": [
+    "Poverty Alleviation",
+    "Community Development",
+    "Education",
+    "Social Justice",
+    "Environment"
+  ],
+  "Arts and Culture": [
+    "Education",
+    "Information Technology",
+    "Computer Science",
+    "Community Development",
+    "Data Science"
+  ],
+  "Elderly Care": [
+    "Education",
+    "Community Development",
+    "Information Technology",
+    "Social Justice",
+    "Data Science"
+  ],
+  "Animal Welfare": [
+    "Poverty Alleviation",
+    "Education",
+    "Humanitarian Aid",
+    "Community Development",
+    "Social Justice"
+  ],
+  "LGBTQ+ Support": [
+    "Social Justice",
+    "Data Science",
+    "Community Development",
+    "Information Technology",
+    "Education"
+  ],
+  "Food Security": [
+    "Health and Wellness",
+    "Animal Welfare",
+    "Poverty Alleviation",
+    "Mathematics",
+    "Education"
+  ],
+  "Youth Empowerment": [
+    "Community Development",
+    "Education",
+    "Social Justice",
+    "Computer Science",
+    "Arts and Culture"
+  ],
+  "Clean Water and Sanitation": [
+    "Environmental Science",
+    "Environment",
+    "Community Development",
+    "Computer Science",
+    "Data Science"
+  ],
+  "Disabilities Support": [
+    "Education",
+    "Elderly Care",
+    "Community Development",
+    "Computer Science",
+    "Poverty Alleviation"
+  ]
+}

@@ -1,8 +1,6 @@
 import { getChangeResponse } from "./helpers"
 
-// export const BASE_URL = "http://localhost:3000"
-
-export const BASE_URL = 'https://api.danamovies.nomoredomainsicu.ru';
+export const BASE_URL = "http://localhost:3000"
 
 export const getMovies = () => {
   return fetch(`${BASE_URL}/movies`, {
@@ -14,15 +12,23 @@ export const getMovies = () => {
   }).then((res) => getChangeResponse(res))
 }
 
-export const register = (name, email, password) => {
-  return fetch(`${BASE_URL}/signup`, {
-    method: "POST",
+export const register = (enteredValues) => {
+  return fetch(`${BASE_URL}/register`, {
+    method: 'POST',
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify({ name, email, password }),
+    body: JSON.stringify(enteredValues)
   }).then((res) => getChangeResponse(res))
+  // return fetch(`${BASE_URL}/signup`, {
+  //   method: "POST",
+  //   headers: {
+  //     Accept: "application/json",
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({ name, email, password }),
+  // }).then((res) => getChangeResponse(res))
 }
 
 export const authorize = (email, password) => {
