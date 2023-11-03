@@ -1,6 +1,8 @@
 .match {
   background: var(--gum-purple);
-
+  // height: 100vh;
+  // background: var(--gum-purple);
+  // min-height: 86vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,6 +17,8 @@
 
 .fireworks {
   margin: 20px;
+  // padding-bottom: 24px;
+  // padding-left: 40px;
   max-width: 170px;
 }
 
@@ -25,9 +29,12 @@
   align-items: center;
   background-position: center;
   background-repeat: no-repeat;
-
   text-align: center;
   padding-bottom: 50px;
+  // height: 320px;
+  // text-align: center;
+  // padding-bottom: 50px;
+  // margin-top: 250px;
 }
 
 .logo_place_match {
@@ -54,6 +61,23 @@
   padding: 20px;
 
   margin: 20px;
+  // font-family: 'PolySansMedium';
+  // font-size: 64px;
+  // font-style: normal;
+  // font-weight: 500;
+  // line-height: 116%;
+  // letter-spacing: -2px;
+  // max-width: 870px;
+  // margin: 0;
+  // padding: 0 0 10px;
+}
+
+.match__button {
+  // max-width: 400px;
+  // background-color: var(--white);
+  // border: 2px solid var(--teal);
+  // border-radius: 2px;
+  // margin-top: 120px;
 }
 
 .match__button:hover {

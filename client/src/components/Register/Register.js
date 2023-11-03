@@ -3,9 +3,11 @@ import Form from '../Form/Form';
 import '../Form/Form.css';
 import useForm from '../../hooks/useForm';
 import { PATTERN_REGEX_EMAIL } from '../../utils/constants';
+import { useNavigate } from 'react-router-dom';
 
 function Register({ isLoading, registrationUser }) {
   const { enteredValues, errors, handleChangeInput, isFormValid } = useForm();
+  const navigate = useNavigate(); // Initialize the navigate function
 
   function setEditUserInfo(event) {
     event.preventDefault();
@@ -17,6 +19,15 @@ function Register({ isLoading, registrationUser }) {
       gender: enteredValues.gender,
       timezone: enteredValues.timezone
     });
+
+    // Redirect to the /game route
+    navigate('/game');
+  }
+
+  // Function to handle the "Send us a mail!" link click
+  function handleSendEmail() {
+    // Redirect the user to their email client
+    window.location.href = 'mailto:personalpowerai@gmail.com';
   }
 
   return (
@@ -27,7 +38,8 @@ function Register({ isLoading, registrationUser }) {
       formQues="Already Registered?"
       linkText=" Sign In"
       formQuesMentor="Are you a Mentor?"
-      linkTextMentor=" Sign Up Here"
+      linkTextMentor=" Send us a mail!"
+      onClickLinkTextMentor={handleSendEmail}
       onSubmit={setEditUserInfo}
       isDisablButton={!isFormValid}
       isLoading={isLoading}

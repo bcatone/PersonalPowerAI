@@ -270,6 +270,10 @@ function App() {
                   <Login isLoading={isLoading} onAuthorization={loginUser} />
                 )
               }
+            /> */}
+            <Route
+              path={'/dashboard'}
+              element={!isLoggedIn ? <Dashboard /> : <Navigate to="/signin" replace />}
             />
             <Route
               path={"/profile"}
@@ -295,6 +299,47 @@ function App() {
                 </>
               }
             />
+            <Route
+              path={'/no-match'}
+              element={
+                <>
+                  <NoMatch />
+                </>
+              }
+            />
+            <Route
+              path={'/ai-mentor-bot'}
+              element={
+                <>
+                  <NoMatch />
+                </>
+              }
+            />
+            <Route
+              path={'/match-list'}
+              element={
+                <>
+                  <MatchList />
+                </>
+              }
+            />
+            <Route
+              path={'/mentorbot'}
+              element={
+                <>
+                  <MentorBot />
+                </>
+              }
+            />
+
+            {/* <Route
+              path={'/chat'}
+              element={
+                <>
+                  <Chat />
+                </>
+              }
+            /> */}
             {/* <Route
               path={'/dashboard'}
               element={

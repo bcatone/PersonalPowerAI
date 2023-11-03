@@ -23,12 +23,15 @@ body {
   font-family: 'TT-InterphasesLight', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--gum-purple);
 }
 
 .limits-container {
-  max-width: 1140px;
+  max-width: 1280px;
   width: calc(100% - 70 * 2px);
-  margin: 0 auto;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .section-title {
@@ -46,6 +49,17 @@ body {
   font-weight: 400;
   line-height: 22px;
   margin: 0;
+}
+
+.button {
+  max-width: 400px;
+  background-color: var(--white);
+  border: 2px solid var(--gum-purple);
+  border-radius: 2px;
+}
+
+.button:hover {
+  box-shadow: 4px 4px 0px 0px var(--gum-purple);
 }
 
 @media screen and (max-width: 1040px) {

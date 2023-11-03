@@ -77,20 +77,55 @@
   margin-bottom: 17px;
 }
 
-.profile__button-save {
-  margin-top: 204px;
-  min-height: 16px;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
+.profile__button-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.profile__button-save {
+  margin-top: 10px;
+  height: 45px;
+  /* background-color: var(--white); */
+  border: 2px solid var(--dark-lilac);
+  border-radius: 2px;
+  font-weight: 500;
   text-align: center;
-  border: none;
-  background: transparent;
-  color: #000;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  text-decoration: none;
+  color: #241153;
+  text-align: center;
+  font-family: 'TT-InterphasesMono';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 23.1px */
+  letter-spacing: -0.399px;
+  background-color: var(--white);
+  padding: 4px 20px;
+}
+
+.form__button-save_inactive {
+  margin-top: 10px;
+  height: 45px;
+  /* background-color: var(--white); */
+  border: 2px solid var(--dark-lilac);
+  border-radius: 2px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  text-decoration: none;
+  color: var(--dark-lilac);
+  text-align: center;
+  font-family: 'TT-InterphasesMono';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 23.1px */
+  letter-spacing: -0.399px;
 }
 
 .profile__button-play {
@@ -100,8 +135,6 @@
   border: 2px solid var(--dark-lilac);
   border-radius: 2px;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
   text-align: center;
   cursor: pointer;
   transition: 0.3s ease-in-out;
@@ -109,12 +142,14 @@
   text-decoration: none;
   color: #241153;
   text-align: center;
-  font-family: TT Interphases Pro Trl;
+  font-family: 'TT-InterphasesMono';
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: 110%; /* 23.1px */
   letter-spacing: -0.399px;
+  background-color: var(--white);
+  padding: 4px 20px;
 }
 
 .profile__button-play:hover {

@@ -11,6 +11,7 @@ function Match() {
   const { matches, menteeData } = state;
 
   console.log(matches);
+
   return (
     <section className="match">
       <Link to="/" className="logo logo_place_match">
