@@ -1,0 +1,2 @@
+class EmpathyStyle < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class LearningStyle < ApplicationRecord
+end

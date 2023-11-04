@@ -1,0 +1,2 @@
+class CareerField < ApplicationRecord
+end

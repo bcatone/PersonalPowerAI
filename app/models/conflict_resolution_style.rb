@@ -1,0 +1,2 @@
+class ConflictResolutionStyle < ApplicationRecord
+end

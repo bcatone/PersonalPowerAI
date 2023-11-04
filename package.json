@@ -1,0 +1,20 @@
+{
+  "name": "personalpowerai",
+  "version": "1.0.0",
+  "description": "> A mentorship platform that connects mentors and mentees for social good initiatives, powered by OpenAI, Ruby On Rails, and React.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "api": "rails s",
+    "app": "npm start --prefix client",
+    "all": "npm-run-all --parallel api app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
