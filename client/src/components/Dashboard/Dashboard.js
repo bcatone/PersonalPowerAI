@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import { Link, NavLink } from 'react-router-dom';
 import Chat from '../Chat/Chat';
@@ -18,14 +18,16 @@ function Dashboard() {
     setIsPopupVisible(!isPopupVisible);
   };
 
-  let isLoggedIn = true;
+  // let isLoggedIn = true;
 
   return (
     <>
-      <Header loggedIn={isLoggedIn} />
+      {/* <Header 
+        // loggedIn={isLoggedIn} 
+      /> */}
       <section className="dashboard">
-        <div class="grid-container">
-          <DashboardSection />
+        <div className="grid-container">
+          {/* <DashboardSection /> */}
           <div className="grid-item grid-item-progress">
             <h3 className="grid-item-name">Progress</h3>
             <p className="progress-text">
@@ -35,20 +37,20 @@ function Dashboard() {
           </div>
           <div className="grid-item grid-item-messages">
             <h3 className="grid-item-name">Inbox Messages</h3>
-            <div class="grid-item grid-item-messages">
+            <div className="grid-item grid-item-messages">
               <Chat />
             </div>
           </div>
           <div className="grid-item grid-item-challenges">
             <h3 className="grid-item-name dark">Daily Challenges</h3>
-            <p className="challenge-text">
+            <div className="challenge-text">
               Pick a day to actively practice empathy. Make an effort to see situations from other
               people's perspectives, both at work and in your personal life. Engage in conversations
               with colleagues and friends, trying to understand their feelings and needs.{' '}
               <div className="more-link" onClick={togglePopup}>
                 read more...
               </div>
-            </p>
+            </div>
             {/* Step 3: Conditionally render the popup */}
             {isPopupVisible && (
               <div className="popup-hint">
@@ -87,7 +89,7 @@ function Dashboard() {
           </div>
         </div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

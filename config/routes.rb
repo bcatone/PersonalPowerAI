@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :similar_category_links
+  resources :category_type_connections
+  resources :category_types
   resources :stress_management_styles
   resources :time_management_styles
   resources :conflict_resolution_styles
@@ -37,11 +40,16 @@ Rails.application.routes.draw do
   resources :genders
   resources :users
 
+  get '/test', to: 'test#test'
+
   post '/register', to: 'users#create'
   post '/login', to: 'sessions#create'
   delete '/logout', to:'sessions#destroy'
   get '/me', to: 'sessions#show'
+  delete '/cancel', to: 'users#destroy'
 
   get '/match-prompt-data', to: 'ai#match_prompt_data'
   get '/mentorbot-prompt-data', to: 'ai#chat_prompt_data'
+
+  get '/similar-categories', to: 'similar_category_links#similar_categories'
 end

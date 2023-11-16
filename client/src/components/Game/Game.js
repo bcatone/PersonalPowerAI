@@ -7,7 +7,7 @@ import card_data from "./card_data";
 import similar_categories from "./similar_categories";
 import mentors_data from "./random_mentors";
 
-const API = "https://matchmaking-api.onrender.com/matches";
+const MATCHMAKING_API = "https://matchmaking-api.onrender.com/matches";
 
 const getSimilarCategory = (category) => {
   const similarCategory = similar_categories[category];
@@ -150,7 +150,7 @@ function Game() {
     if (stop) {
       const postMatch = async () => {
         console.log("menteeData", menteeData);
-        fetch(API, {
+        fetch(MATCHMAKING_API, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -160,6 +160,7 @@ function Game() {
         })
           .then((response) => response.json())
           .then((data) => {
+            console.log(data);
             if (data["matches"].length > 0) {
               const matches_data = data["matches"].map((match) => {
                 return {

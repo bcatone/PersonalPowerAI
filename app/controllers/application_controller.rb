@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
 
   def current_user
     user = User.find_by(id: session[:user_id])
-    user = User.first unless user
+    # user = User.first unless user
     user
   end
 

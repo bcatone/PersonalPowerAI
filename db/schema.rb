@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_04_054344) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_10_164339) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_054344) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_category_skills_on_category_id"
     t.index ["skill_id"], name: "index_category_skills_on_skill_id"
+  end
+
+  create_table "category_type_connections", force: :cascade do |t|
+    t.bigint "category_type_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_type_connections_on_category_id"
+    t.index ["category_type_id"], name: "index_category_type_connections_on_category_type_id"
+  end
+
+  create_table "category_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "collaboration_styles", force: :cascade do |t|
@@ -164,6 +179,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_054344) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "similar_category_links", force: :cascade do |t|
+    t.bigint "category_1_id", null: false
+    t.bigint "category_2_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_1_id"], name: "index_similar_category_links_on_category_1_id"
+    t.index ["category_2_id"], name: "index_similar_category_links_on_category_2_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -267,6 +291,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_054344) do
   add_foreign_key "category_interests", "interests"
   add_foreign_key "category_skills", "categories"
   add_foreign_key "category_skills", "skills"
+  add_foreign_key "category_type_connections", "categories"
+  add_foreign_key "category_type_connections", "category_types"
   add_foreign_key "matches", "mentees"
   add_foreign_key "matches", "mentors"
   add_foreign_key "mentees", "users"
@@ -274,6 +300,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_054344) do
   add_foreign_key "mentorbot_messages", "users"
   add_foreign_key "mentors", "users"
   add_foreign_key "messages", "matches"
+  add_foreign_key "similar_category_links", "categories", column: "category_1_id"
+  add_foreign_key "similar_category_links", "categories", column: "category_2_id"
   add_foreign_key "user_careers", "career_titles"
   add_foreign_key "user_careers", "users"
   add_foreign_key "user_ethnicities", "ethnicities"

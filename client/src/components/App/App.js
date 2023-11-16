@@ -1,258 +1,299 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
+import * as api from '../../utils/MainApi';
+import { setIsLoading } from '../../redux/actions/isLoadingActions';
+import { setUser, clearUser } from '../../redux/actions/authActions';
+// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
-import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Footer from '../Footer/Footer';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
-import Register from '../Register/Register';
 import Login from '../Login/Login';
-import * as api from '../../utils/MainApi';
+import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Dashboard from '../Dashboard/Dashboard';
 //import Chat from '../Chat/Chat';
 import Game from '../Game/Game';
 import Match from '../Game/Match/Match';
 import NoMatch from '../Game/NoMatch/NoMatch';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import InfoTooltipEditProfile from '../InfoTooltipEditProfile/InfoTooltipEditProfile';
+// import InfoTooltip from '../InfoTooltip/InfoTooltip';
+// import InfoTooltipEditProfile from '../InfoTooltipEditProfile/InfoTooltipEditProfile';
 import NotFound from '../NotFound/NotFound';
 import MatchList from '../MatchList/MatchList';
 import MentorBot from '../MentorBot/MentorBot';
 import './App.css';
+import Layout from '../layouts/Layout';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import MontyTheMentorBot from '../MentorBot/MontyTheMentorBot';
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
-  const [currentUser, setCurrentUser] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isUpdate, setIsUpdate] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isInfoToolTipPopupOpen, setInfoToolTipPopupOpen] = useState(false);
-  const [isInfoTooltipEditProfilePopupOpen, setInfoTooltipEditProfilePopupOpen] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isUpdate, setIsUpdate] = useState(false);
+  // const [isSuccess, setIsSuccess] = useState(false);
+  // const [isInfoToolTipPopupOpen, setInfoToolTipPopupOpen] = useState(false);
+  // const [isInfoTooltipEditProfilePopupOpen, setInfoTooltipEditProfilePopupOpen] = useState(false);
 
-  // show data on auth
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const isLoggedIn = useSelector((state) => state.auth.isAuthenticated)
+
+  useEffect(() => {
+    dispatch(setIsLoading(true));
+    try {
+      const jwt = localStorage.getItem('jwt');
+
+      if (jwt) {
+        api
+          .getLoggedInUserInfo(jwt)
+          .then(res => {
+            if (res) {
+              dispatch(setUser(res));
+            }
+            navigate(path);
+          })
+          .catch(error => {
+            console.error(error);
+            console.log("The jwt token was not found on the backend."); // Debug log
+            dispatch(clearUser());
+          });
+      } else {
+        console.log("No JSON web token found in local storage."); // Debug log
+        dispatch(clearUser());
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      dispatch(setIsLoading(false));
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   // useEffect(() => {
-  //   if (isLoggedIn) {
+  //   const handleLogout = () => {
+  //     // setIsLoggedIn(false);
+  //     localStorage.removeItem('jwt');
+  //     localStorage.clear();
+  //     dispatch(clearUser());
+  //     navigate('/');
+  //   };
+
+  //   if (!user) {
+  //     console.log("Logging out...")
+  //     handleLogout();
+  //   }
+  // }, [user])
+
+  // // This was replaced with the above useEffect
+  // useEffect(() => {
+  //   const jwt = localStorage.getItem('jwt');
+  //   if (jwt) {
   //     api
-  //       .getMe()
-  //       .then(profileInfo => {
-  //         setCurrentUser(profileInfo);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //     api
-  //       .getMovies()
-  //       .then(cardsSavedFilms => {
-  //         setSavedMovies(cardsSavedFilms.reverse());
+  //       .getContent(jwt)
+  //       .then(res => {
+  //         if (res) {
+  //           setIsLoggedIn(true);
+  //           // localStorage.removeItem('allMovies');
+  //         }
+  //         navigate(path);
   //       })
   //       .catch(error => {
   //         console.log(error);
   //       });
   //   }
-  // }, [isLoggedIn]);
+  // }, []);
 
-  useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      api
-        .getContent(jwt)
-        .then(res => {
-          if (res) {
-            setIsLoggedIn(true);
-            // localStorage.removeItem('allMovies');
-          }
-          navigate(path);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  }, []);
-
-  // Registration
-  function registrationUser({ name, email, password, expertise, timezone }) {
-    setIsLoading(true);
-    api
-      .register(name, email, password, expertise, timezone)
-      .then(() => {
-        loginUser({ email, password });
-        setInfoToolTipPopupOpen(true);
-        setIsSuccess(true);
-      })
-      .catch(error => {
-        setInfoToolTipPopupOpen(true);
-        setIsSuccess(false);
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
-
-  // Login
-  function loginUser({ email, password }) {
-    setIsLoading(true);
-    api
-      .authorize(email, password)
-      .then(res => {
-        if (res) {
-          setIsSuccess(true);
-          setInfoToolTipPopupOpen(true);
-          localStorage.setItem('jwt', res.token);
-          navigate('/dashboard', { replace: true });
-          setIsLoggedIn(true);
-        }
-      })
-      .catch(error => {
-        setInfoToolTipPopupOpen(true);
-        setIsSuccess(false);
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
-
-  // Add like to the game card
-  // function handleCardLike(card) {
+  // // Registration (logic is moved to Registration directory)
+  // function registrationUser({ name, email, password, expertise, timezone }) {
+  //   setIsLoading(true);
   //   api
-  //     .addNewCard(card)
-  //     .then(newMovieFilm => {
-  //       setSavedMovies([newMovieFilm, ...savedMovies]);
-  //     })
-  //     .catch(error => {
-  //       setIsSuccess(false);
-  //       console.log(error);
-  //       handleAuthorizationError(error);
-  //     });
-  // }
-
-  // // Удаление сохраненного фильма
-  // function handleDeleteFilm(card) {
-  //   api
-  //     .deleteCard(card._id)
+  //     .register(name, email, password, expertise, timezone)
   //     .then(() => {
-  //       setSavedMovies(state => state.filter(item => item._id !== card._id));
+  //       loginUser({ email, password });
+  //       setInfoToolTipPopupOpen(true);
+  //       setIsSuccess(true);
   //     })
   //     .catch(error => {
+  //       setInfoToolTipPopupOpen(true);
   //       setIsSuccess(false);
   //       console.log(error);
-  //       handleAuthorizationError(error);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
   //     });
   // }
 
-  // Edit Profile
-  function editProfileInfo(userInfo) {
-    setIsLoading(true);
-    api
-      .setUserInfo(userInfo)
-      .then(data => {
-        setInfoTooltipEditProfilePopupOpen(true);
-        setIsUpdate(true);
-        setCurrentUser(data);
-      })
-      .catch(error => {
-        setInfoTooltipEditProfilePopupOpen(true);
-        setIsUpdate(false);
-        console.log(error);
-        handleAuthorizationError(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
+  // // Login (logic is moved to Login directory)
+  // function loginUser({ email, password }) {
+  //   setIsLoading(true);
+  //   api
+  //     .authorize(email, password)
+  //     .then(res => {
+  //       if (res) {
+  //         setIsSuccess(true);
+  //         setInfoToolTipPopupOpen(true);
+  //         localStorage.setItem('jwt', res.token);
+  //         navigate('/dashboard', { replace: true });
+  //         setIsLoggedIn(true);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       setInfoToolTipPopupOpen(true);
+  //       setIsSuccess(false);
+  //       console.log(error);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // }
 
-  // handle auth error
-  function handleAuthorizationError(error) {
-    if (error === 'Error: 401') {
-      handleLogout();
-    }
-  }
 
-  //  close All Popups
-  function closeAllPopups() {
-    setInfoToolTipPopupOpen(false);
-    setInfoTooltipEditProfilePopupOpen(false);
-  }
+  // // Edit Profile (logic is moved to Profile directory)
+  // function editProfileInfo(userInfo) {
+  //   setIsLoading(true);
+  //   api
+  //     .setUserInfo(userInfo)
+  //     .then(data => {
+  //       setInfoTooltipEditProfilePopupOpen(true);
+  //       setIsUpdate(true);
+  //       setCurrentUser(data);
+  //     })
+  //     .catch(error => {
+  //       setInfoTooltipEditProfilePopupOpen(true);
+  //       setIsUpdate(false);
+  //       console.log(error);
+  //       handleAuthorizationError(error);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // }
 
-  // to see the state in useEffect I use the isOpen const
-  const isOpen = isInfoToolTipPopupOpen || isInfoTooltipEditProfilePopupOpen;
 
-  // Close on ESC
-  useEffect(() => {
-    function closeByEscapePopups(evt) {
-      if (evt.key === 'Escape') {
-        closeAllPopups();
-      }
-    }
-    if (isOpen) {
-      document.addEventListener('keydown', closeByEscapePopups);
-      return () => {
-        document.removeEventListener('keydown', closeByEscapePopups);
-      };
-    }
-  }, [isOpen]);
+  // // handle auth error (this is already accounted for in the initial useEffect)
+  // function handleAuthorizationError(error) {
+  //   if (error === 'Error: 401') {
+  //     handleLogout();
+  //   }
+  // }
 
-  // Popup clole on overlay
-  function closeByOverlayPopups(event) {
-    if (event.target === event.currentTarget) {
-      closeAllPopups();
-    }
-  }
+  // //  close All Popups
+  // function closeAllPopups() {
+  //   setInfoToolTipPopupOpen(false);
+  //   setInfoTooltipEditProfilePopupOpen(false);
+  // }
 
-  // When you logout all the data is cleaned
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('movies');
-    localStorage.removeItem('movieSearch');
-    localStorage.removeItem('shortMovies');
-    localStorage.removeItem('allMovies');
-    localStorage.clear();
-    navigate('/');
-  };
+  // // Close on ESC
+  // useEffect(() => {
+
+  //   // Moved this inside the useEffect and changed dependencies to rely on state
+  //   const isOpen = isInfoToolTipPopupOpen || isInfoTooltipEditProfilePopupOpen;
+
+  //   function closeByEscapePopups(evt) {
+  //     if (evt.key === 'Escape') {
+  //       closeAllPopups();
+  //     }
+  //   }
+  //   if (isOpen) {
+  //     document.addEventListener('keydown', closeByEscapePopups);
+  //     return () => {
+  //       document.removeEventListener('keydown', closeByEscapePopups);
+  //     };
+  //   }
+  // }, [isInfoToolTipPopupOpen, isInfoTooltipEditProfilePopupOpen]);
+
+  // // Popup close on overlay
+  // function closeByOverlayPopups(event) {
+  //   if (event.target === event.currentTarget) {
+  //     closeAllPopups();
+  //   }
+  // }
+
+  // // When you logout all the data is cleaned
+  // const handleLogout = () => {
+  //   setIsLoggedIn(false);
+  //   localStorage.removeItem('jwt');
+  //   localStorage.clear();
+  //   dispatch(clearUser());
+  //   navigate('/');
+  // };
+
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
-        <div className="page__wrapper page__container">
-          <Routes>
-            <Route
-              path={'/'}
-              element={
-                <>
-                  <Header loggedIn={isLoggedIn} />
-                  <Main />
-                  <Footer />
-                </>
-              }
-            />
-            <Route
-              path={'/signin'}
-              element={
-                isLoggedIn ? (
-                  <Navigate to="/dashboard" replace />
-                ) : (
-                  <Login isLoading={isLoading} onAuthorization={loginUser} />
-                )
-              }
-            />
-            <Route
-              path={'/register'}
-              element={
-                isLoggedIn ? (
-                  <Navigate to="/game" replace />
-                ) : (
-                  <Register isLoading={isLoading} registrationUser={registrationUser} />
-                )
-              }
-            />
-            {/* not protected */}
-            {/* <Route
+    <div className='page'>
+      <div className="page__wrapper page__container">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={isLoggedIn ? <Navigate to="/me" replace /> : <Main />} />
+            <Route path="signin/" element={isLoggedIn ? <Navigate to="/me" replace /> : <Login />} />
+            <Route path="register/" element={isLoggedIn ? <Navigate to="/me" replace /> : <Register />} />
+            <Route path="me/">
+              <Route index element={<Navigate to="dashboard" />} />
+              <Route path="dashboard/" element={<ProtectedRoute component={Dashboard} />}/>
+              <Route path="profile/" element={<ProtectedRoute component={Profile} />} />
+              <Route path="game/" element={<ProtectedRoute component={Game} />} />
+              <Route path="match/" element={<ProtectedRoute component={Match} />} />
+              <Route path="no-match/" element={<ProtectedRoute component={NoMatch} />} />
+              <Route path="ai-mentor-bot/" element={<ProtectedRoute component={NoMatch} />} />
+              <Route path="match-list/" element={<ProtectedRoute component={MatchList} />} />
+              <Route path="mentorbot/" element={<ProtectedRoute component={MontyTheMentorBot} />} />
+            </Route>
+          </Route>
+          <Route path={'*'} element={<NotFound />} />
+        </Routes>
+      </div>
+    </div>
+  )
+
+  return (
+    // <CurrentUserContext.Provider value={currentUser}>
+    <div className="page">
+      <div className="page__wrapper page__container">
+        <Routes>
+          <Route
+            path={'/'}
+            element={
+              <>
+                <Header loggedIn={isLoggedIn} />
+                <Main />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path={'/signin'}
+            element={
+              isLoggedIn ? (
+                <Navigate to="/dashboard" replace />
+              ) : (
+                <Login
+                // isLoading={isLoading} 
+                // onAuthorization={loginUser} 
+                />
+              )
+            }
+          />
+          <Route
+            path={'/register'}
+            element={
+              isLoggedIn ? (
+                <Navigate to="/game" replace />
+              ) : (
+                <Register
+                // isLoading={isLoading} 
+                // registrationUser={registrationUser} 
+                />
+              )
+            }
+          />
+          {/* not protected */}
+          {/* <Route
               path={'/dashboard'}
               element={
                 !isLoggedIn ? (
@@ -262,68 +303,68 @@ function App() {
                 )
               }
             /> */}
-            <Route
-              path={'/dashboard'}
-              element={!isLoggedIn ? <Dashboard /> : <Navigate to="/signin" replace />}
-            />
-            <Route
-              path={'/profile'}
-              element={
-                <>
-                  <Profile />
-                </>
-              }
-            />
-            <Route
-              path={'/game'}
-              element={
-                <>
-                  <Game />
-                </>
-              }
-            />
-            <Route
-              path={'/match'}
-              element={
-                <>
-                  <Match />
-                </>
-              }
-            />
-            <Route
-              path={'/no-match'}
-              element={
-                <>
-                  <NoMatch />
-                </>
-              }
-            />
-            <Route
-              path={'/ai-mentor-bot'}
-              element={
-                <>
-                  <NoMatch />
-                </>
-              }
-            />
-            <Route
-              path={'/match-list'}
-              element={
-                <>
-                  <MatchList />
-                </>
-              }
-            />
-            <Route
-              path={'/mentorbot'}
-              element={
-                <>
-                  <MentorBot />
-                </>
-              }
-            />
+          <Route
+            path={'/dashboard'}
+            element={!isLoggedIn ? <Dashboard /> : <Navigate to="/signin" replace />}
+          />
+          <Route
+            path={'/profile'}
+            element={
+              <>
+                <Profile />
+              </>
+            }
+          />
+          <Route
+            path={'/game'}
+            element={
+              <>
+                <Game />
+              </>
+            }
+          />
+          <Route
+            path={'/match'}
+            element={
+              <>
+                <Match />
+              </>
+            }
+          />
+          <Route
+            path={'/no-match'}
+            element={
+              <>
+                <NoMatch />
+              </>
+            }
+          />
+          <Route
+            path={'/ai-mentor-bot'}
+            element={
+              <>
+                <NoMatch />
+              </>
+            }
+          />
+          <Route
+            path={'/match-list'}
+            element={
+              <>
+                <MatchList />
+              </>
+            }
+          />
+          <Route
+            path={'/mentorbot'}
+            element={
+              <>
+                <MentorBot />
+              </>
+            }
+          />
 
-            {/* <Route
+          {/* <Route
               path={'/chat'}
               element={
                 <>
@@ -331,7 +372,7 @@ function App() {
                 </>
               }
             /> */}
-            {/* <Route
+          {/* <Route
               path={'/dashboard'}
               element={
                 <ProtectedRoute
@@ -379,24 +420,23 @@ function App() {
                 />
               }
             /> */}
-            <Route path={'*'} element={<NotFound />} />
-            <Route path={'*'} element={<NotFound />} />
-          </Routes>
-          <InfoTooltip
+          <Route path={'*'} element={<NotFound />} />
+        </Routes>
+        {/* <InfoTooltip
             isSuccess={isSuccess}
             isOpen={isInfoToolTipPopupOpen}
             onClose={closeAllPopups}
             onCloseOverlay={closeByOverlayPopups}
-          />
-          <InfoTooltipEditProfile
+          /> */}
+        {/* <InfoTooltipEditProfile
             isUpdate={isUpdate}
             isOpen={isInfoTooltipEditProfilePopupOpen}
             onClose={closeAllPopups}
             onCloseOverlay={closeByOverlayPopups}
-          />
-        </div>
+          /> */}
       </div>
-    </CurrentUserContext.Provider>
+    </div>
+    // </CurrentUserContext.Provider>
   );
 }
 

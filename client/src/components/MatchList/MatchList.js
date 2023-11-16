@@ -17,10 +17,10 @@ function MatchList() {
 
   return (
     <>
-      <Header isloggedIn={isLoggedIn} />
-      <div className="dash-cont">
+      {/* <Header isloggedIn={isLoggedIn} /> */}
+      {/* <div className="dash-cont">
         <DashboardSection onLinkClick={handleLinkClick} />
-      </div>
+      </div> */}
       <Carousel />
     </>
   );

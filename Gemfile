@@ -51,3 +51,5 @@ gem "active_model_serializers", "~> 0.10.14"
 gem 'dotenv-rails'
 
 gem 'faker'
+
+gem 'jwt', '~> 2.3'

@@ -1,30 +1,74 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import useForm from '../Form/useForm';
+import useInfoTooltipPopup from '../common/InfoTooltipPopup/useInfoTooltipPopup';
+import * as api from '../../utils/MainApi';
+import { setIsLoading } from '../../redux/actions/isLoadingActions';
+import { setUser } from '../../redux/actions/authActions';
 import Form from '../Form/Form';
-import useForm from '../../hooks/useForm';
-import '../Form/Form.css';
+import InfoTooltipPopup from '../common/InfoTooltipPopup/InfoToolTipPopup';
+
 import { PATTERN_REGEX_EMAIL } from '../../utils/constants';
+import '../Form/Form.css';
+
 
 function Login({ onAuthorization, isLoading }) {
   const { enteredValues, errors, handleChangeInput, isFormValid } = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  function setEditUserInfo(event) {
-    event.preventDefault();
-    onAuthorization({
-      email: enteredValues.email,
-      password: enteredValues.password
-    });
+  const {
+    isOpen,
+    setIsOpen,
+    isSuccess,
+    setIsSuccess,
+    closePopupByOverlay
+  } = useInfoTooltipPopup();
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(setIsLoading(true));
+    api
+      .loginUser(enteredValues)
+      .then((res) => {
+        console.log(res);
+        dispatch(setUser(res.user)); // Logs in the user
+        localStorage.setItem('jwt', res.token);
+        setIsSuccess(true);
+        navigate("dashboard"); // This would currently redirect before the success popup appears
+      })
+      .catch((error) => {
+        console.error(error);
+        setIsSuccess(false);
+      })
+      .finally(() => {
+        setIsOpen(true);
+        dispatch(setIsLoading(false));
+      });
   }
 
+  // function setEditUserInfo(event) {
+  //   event.preventDefault();
+  //   onAuthorization({
+  //     email: enteredValues.email,
+  //     password: enteredValues.password
+  //   });
+  // }
+
   return (
+    <>
     <Form
       title="Welcome back!!"
       buttonText="LOGIN"
       linkText=" Register"
       formQues="No account yet?"
       link="/register"
-      isDisablButton={!isFormValid}
-      isLoading={isLoading}
-      onSubmit={setEditUserInfo}
+      isDisabledButton={!isFormValid}
+      // isLoading={isLoading}
+      // onSubmit={setEditUserInfo}
+      onSubmit={handleLoginSubmit}
     >
       <label className="form__label">
         E-mail
@@ -58,6 +102,15 @@ function Login({ onAuthorization, isLoading }) {
         <span className="form__input-error">{errors.password}</span>
       </label>
     </Form>
+    <InfoTooltipPopup
+        isOpen={isOpen}
+        isSuccess={isSuccess}
+        successText={{ text: "Welcome to the next level of mentorship!", alt: "You are successfully registered." }}
+        failureText={{ text: "Something went wrong.", alt: "Registration failed." }}
+        onClose={() => setIsOpen(false)}
+        onCloseOverlay={closePopupByOverlay}
+      />
+    </>
   );
 }
 

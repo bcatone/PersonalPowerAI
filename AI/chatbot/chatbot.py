@@ -1,9 +1,11 @@
 # imports
 import openai
 import tiktoken
+from decouple import config
 
 # set API key
-openai.api_key=""
+# openai.api_key=""
+openai.api_key = config('OPENAI_API_KEY')
 
 # max token input const
 MAX_TOKENS = 16384
@@ -54,6 +56,7 @@ def generate_response(input):
             continue
 
     user_input = input.get('newMsg') # get the latest message from the user
+
     messages.append({'role':'user', 'content':f"{user_input}"}) # add it to the list of messages
 
     total_tokens = token_count(messages) # get number of tokens used in context

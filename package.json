@@ -8,8 +8,9 @@
   },
   "scripts": {
     "api": "rails s",
+    "ai": "cd AI && flask run",
     "app": "npm start --prefix client",
-    "all": "npm-run-all --parallel api app",
+    "all": "npm-run-all --parallel api ai app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -14,18 +14,22 @@ class UsersController < ApplicationController
     # Creates a new user on registration
     # This may be refactored to use seperate routes at a later stage
     def create
-        @user = User.create!(user_params)
+
+      
+        # @user = User.create!(user_params)
+
+        # Temporary workaround over bcrypt issue for development
+        # Make more secure before deploying
+        @user = User.create!(email: params[:email], password: params[:password], first_name: params[:name], timezone: params[:timezone], expertise: params[:expertise])
         
+        name_parts = split_name(params[:name])
+      puts name_parts
+
         if params[:mentor]
             Mentor.create!(user: @user)
-        end
-
-        if params[:mentee]
+        else params[:mentee]
             Mentee.create!(user: @user)
         end
-
-        # Temporary code until name field is seperated into seperate fields
-        split_name
 
         # Temporary code until gender selection changes from text input to option select on frontend
         gender_input = params[:gender]
@@ -57,12 +61,12 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :email, :phone_number, :first_name, :middle_name, :last_name, :suffix, :date_of_birth, :city, :state, :country, :zip_code, :timezone, :expertise)
+      params.require(:user).permit(:username, :password, :password_confirmation, :email, :phone_number, :first_name, :middle_name, :last_name, :suffix, :date_of_birth, :city, :state, :country, :zip_code, :timezone, :expertise)
     end
 
     # Temporary code until name field is seperated into seperate fields
-    def split_name
-        name_parts = params[:name].split(' ')
+    def split_name(nameTextInput)
+        name_parts = nameTextInput.split(' ')
 
         case name_parts.length
         when 1

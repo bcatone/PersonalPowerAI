@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-#   has_secure_password
+  has_secure_password
 
   has_many :user_genders, dependent: :destroy
   has_many :genders, through: :user_genders
@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :mentorbot_messages, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true
+#   validates :password, presence: true
   # validates :date_of_birth, presence: true
   # validates :age, numericality: { greater_than_or_equal_to: 13 } # For Children’s Online Privacy Protection Act (COPPA) compliance
 
@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def gender
-      self.genders[0].name
+      name = self.genders[0].name
   end
 
   def ethnicity
@@ -44,6 +44,11 @@ class User < ApplicationRecord
   # def is_adult?
   #     self.age >= 18
   # end
+
+  def categories
+    user_categories = (self.skills.map(&:categories) + self.interests.map(&:categories)).flatten.uniq
+    user_categories
+  end
 
 
 end
