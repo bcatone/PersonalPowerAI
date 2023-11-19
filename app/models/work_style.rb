@@ -1,0 +1,2 @@
+class WorkStyle < ApplicationRecord
+end

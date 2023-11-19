@@ -7,10 +7,14 @@
 .grid-container {
   display: grid;
   /* grid-template-columns: 1fr 2fr 1fr; */
-  grid-template-areas:
+  grid-template-areas: 
+    'progres progres challenges'
+    'messages messages schedules'
+    'messages messages schedules';
+  /* grid-template-areas:
     'dashboard progres progres challenges'
     'dashboard messages messages schedules'
-    'dashboard messages messages schedules';
+    'dashboard messages messages schedules'; */
   grid-gap: 20px; /* Adjust the gap as needed */
   height: 100vh;
   padding: 20px 0;

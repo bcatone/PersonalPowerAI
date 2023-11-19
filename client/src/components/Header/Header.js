@@ -4,9 +4,13 @@ import './Header.css';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ 
+  // isLoggedIn 
+}) => {
   const location = useLocation();
+  const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
   const isMainRoute = location.pathname === '/'; // Replace '/main' with the actual route of your Main page
 
   return (
@@ -25,7 +29,7 @@ const Header = ({ isLoggedIn }) => {
           </Link>
         ) : null}{' '}
         {/* If not Main and not logged in, render nothing */}
-        <Navigation isLoggedIn={isLoggedIn} />
+        {/* <Navigation isLoggedIn={isLoggedIn} /> */}
       </div>
     </header>
   );
@@ -34,9 +38,9 @@ const Header = ({ isLoggedIn }) => {
 export default Header;
 
 // Define PropTypes
-Header.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired
-};
+// Header.propTypes = {
+//   isLoggedIn: PropTypes.bool.isRequired
+// };
 // import React from 'react';
 // import { Link, useLocation } from 'react-router-dom';
 // import './Header.css';

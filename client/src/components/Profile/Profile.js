@@ -1,17 +1,19 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom'; // Import Navigate from 'react-router-dom'
 import Header from '../Header/Header';
-import useForm from '../../hooks/useForm';
+import useForm from '../Form/useForm';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { PATTERN_REGEX_EMAIL } from '../../utils/constants';
 import './Profile.css';
+import { useSelector } from 'react-redux';
 
 function Profile({ isloggedIn, isLoading, onUpdateUser, signOut }) {
-  const currentUser = useContext(CurrentUserContext);
+  // const currentUser = useContext(CurrentUserContext);
+  const currentUser = useSelector((state) => state.auth.user);
   const { enteredValues, errors, handleChangeInput, isFormValid, resetForm } = useForm();
   const [isLastValues, setIsLastValues] = useState(false);
 
-  let isLoggedIn = true;
+  // let isLoggedIn = true;
 
   useEffect(() => {
     if (currentUser.name === enteredValues.name && currentUser.email === enteredValues.email) {
@@ -40,9 +42,9 @@ function Profile({ isloggedIn, isLoading, onUpdateUser, signOut }) {
 
   return (
     <>
-      <Header isloggedIn={isLoggedIn} />
+      {/* <Header isloggedIn={isLoggedIn} /> */}
       <section className="profile">
-        <h3 className="profile__title">Hello, {currentUser.name}!</h3>
+        <h3 className="profile__title">Hello, {currentUser.first_name}!</h3>
         <form className="profile__forma" id="form" onSubmit={setEditUserInfo} noValidate>
           <label className="profile__label">
             Name

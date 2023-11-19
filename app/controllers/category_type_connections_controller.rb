@@ -1,0 +1,2 @@
+class CategoryTypeConnectionsController < ApplicationController
+end

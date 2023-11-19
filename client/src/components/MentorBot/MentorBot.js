@@ -4,33 +4,47 @@ import './MentorBot.css';
 
 const MentorBot = () => {
   const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '',
     dangerouslyAllowBrowser: true
   });
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {'role': 'system', 'content': 'You are a software developer with over 20 years of experience in the tech industry.'},
+    {'role': 'system', 'content': 'You want to help share your wisdom with younger developers, answering their questions and providing guidance and advice.'},
+    {'role': 'system', 'content': 'Engage in conversation with me by asking me a new question that will help you provide a more effective and personalized answer.'},
+    {'role': 'system', 'content': 'Speak to me as though you were my friend offering me advice, but you are extremely knowledgeable about the subject.'},
+    {'role': 'system', 'content': 'Keep your responses short and concise, but informative. Do not end the conversation.'},
+    {'role':'system', 'content': 'Format your answers so that they are easily readable in markdown or bullet points if applicable'}
+  ]);
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [mentorResponse, setMentorResponse] = useState('');
 
-  const MAX_TOKENS = 16384;
-
   const addMessage = (role, content) => {
+    // console.log(content);
     const newMessage = { role, content };
     setMessages(prevMessages => [...prevMessages, newMessage]);
   };
 
   const generateResponse = async () => {
     try {
+      setLoading(true);
+  
+      // Create a message object for the user's input
+      const userMessage = { role: 'user', content: userInput };
+      // addMessage('user', userInput);
+      setUserInput('');
+  
+      // Send the user's message to the OpenAI API
       const response = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo-16k',
-        messages: messages,
-        temperature: 0
+        model: 'gpt-4',
+        messages: [...messages, userMessage], // Include all messages, including the user's message
+        temperature: 0,
       });
-
+  
       const aiResp = response.choices[0].message.content;
       addMessage('assistant', aiResp);
-      setMentorResponse(aiResp); // Update mentor response
+      setMentorResponse(aiResp);
       setLoading(false);
     } catch (error) {
       console.error('API Error:', error);
@@ -43,9 +57,10 @@ const MentorBot = () => {
     if (userInput.trim() === '' || loading) return;
     setLoading(true);
 
-    addMessage('user', userInput);
+    // addMessage('user', userInput);
     setUserInput('');
 
+    addMessage('user', userInput);
     await generateResponse();
   };
 
@@ -59,6 +74,7 @@ const MentorBot = () => {
               {message.content}
             </div>
           ))}
+          {loading && <div className="assistant">Loading...</div>}
         </div>
         <input
           className="chatbot-input"

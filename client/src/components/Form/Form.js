@@ -13,7 +13,7 @@ function Form({
   linkTextMentor,
   buttonText,
   isLoading,
-  isDisablButton,
+  isDisabledButton,
   onSubmit,
   onClickLinkTextMentor // New prop to handle "Send us a mail!" link click
 }) {
@@ -28,11 +28,11 @@ function Form({
         <button
           type="submit"
           className={
-            isDisablButton || isLoading
+            isDisabledButton || isLoading
               ? 'form__button-save form__button-save_inactive'
               : 'form__button-save'
           }
-          disabled={isDisablButton ? true : false}
+          disabled={!!isDisabledButton}
         >
           {buttonText}
         </button>

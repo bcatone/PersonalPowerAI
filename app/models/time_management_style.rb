@@ -1,0 +1,2 @@
+class TimeManagementStyle < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class StressManagementStyle < ApplicationRecord
+end
