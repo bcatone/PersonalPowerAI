@@ -38,42 +38,55 @@ function App() {
   // const [isInfoTooltipEditProfilePopupOpen, setInfoTooltipEditProfilePopupOpen] = useState(false);
 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
-  const isLoggedIn = useSelector((state) => state.auth.isAuthenticated)
+  const user = useSelector(state => state.auth.user);
+  const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
 
   useEffect(() => {
-    dispatch(setIsLoading(true));
-    try {
-      const jwt = localStorage.getItem('jwt');
+    const testUser = {
+      id: 1,
+      first_name: 'Dana',
+      categories: [],
+      skills: [],
+      interests: []
+      // enter anything else you want to use for testing out frontend stuff
+    };
 
-      if (jwt) {
-        api
-          .getLoggedInUserInfo(jwt)
-          .then(res => {
-            if (res) {
-              dispatch(setUser(res));
-            }
-            navigate(path);
-          })
-          .catch(error => {
-            console.error(error);
-            console.log("The jwt token was not found on the backend."); // Debug log
-            dispatch(clearUser());
-          });
-      } else {
-        console.log("No JSON web token found in local storage."); // Debug log
-        dispatch(clearUser());
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      dispatch(setIsLoading(false));
-    }
+    dispatch(setUser(testUser));
   }, []);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  // useEffect(() => {
+  //   dispatch(setIsLoading(true));
+  //   try {
+  //     const jwt = localStorage.getItem('jwt');
+
+  //     if (jwt) {
+  //       api
+  //         .getLoggedInUserInfo(jwt)
+  //         .then(res => {
+  //           if (res) {
+  //             dispatch(setUser(res));
+  //           }
+  //           navigate(path);
+  //         })
+  //         .catch(error => {
+  //           console.error(error);
+  //           console.log("The jwt token was not found on the backend."); // Debug log
+  //           dispatch(clearUser());
+  //         });
+  //     } else {
+  //       console.log("No JSON web token found in local storage."); // Debug log
+  //       dispatch(clearUser());
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     dispatch(setIsLoading(false));
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user]);
 
   // useEffect(() => {
   //   const handleLogout = () => {
@@ -153,7 +166,6 @@ function App() {
   //     });
   // }
 
-
   // // Edit Profile (logic is moved to Profile directory)
   // function editProfileInfo(userInfo) {
   //   setIsLoading(true);
@@ -174,7 +186,6 @@ function App() {
   //       setIsLoading(false);
   //     });
   // }
-
 
   // // handle auth error (this is already accounted for in the initial useEffect)
   // function handleAuthorizationError(error) {
@@ -224,18 +235,23 @@ function App() {
   //   navigate('/');
   // };
 
-
   return (
-    <div className='page'>
+    <div className="page">
       <div className="page__wrapper page__container">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={isLoggedIn ? <Navigate to="/me" replace /> : <Main />} />
-            <Route path="signin/" element={isLoggedIn ? <Navigate to="/me" replace /> : <Login />} />
-            <Route path="register/" element={isLoggedIn ? <Navigate to="/me" replace /> : <Register />} />
+            <Route
+              path="signin/"
+              element={isLoggedIn ? <Navigate to="/me" replace /> : <Login />}
+            />
+            <Route
+              path="register/"
+              element={isLoggedIn ? <Navigate to="/me" replace /> : <Register />}
+            />
             <Route path="me/">
               <Route index element={<Navigate to="dashboard" />} />
-              <Route path="dashboard/" element={<ProtectedRoute component={Dashboard} />}/>
+              <Route path="dashboard/" element={<ProtectedRoute component={Dashboard} />} />
               <Route path="profile/" element={<ProtectedRoute component={Profile} />} />
               <Route path="game/" element={<ProtectedRoute component={Game} />} />
               <Route path="match/" element={<ProtectedRoute component={Match} />} />
@@ -249,7 +265,7 @@ function App() {
         </Routes>
       </div>
     </div>
-  )
+  );
 
   return (
     // <CurrentUserContext.Provider value={currentUser}>
@@ -273,8 +289,8 @@ function App() {
                 <Navigate to="/dashboard" replace />
               ) : (
                 <Login
-                // isLoading={isLoading} 
-                // onAuthorization={loginUser} 
+                // isLoading={isLoading}
+                // onAuthorization={loginUser}
                 />
               )
             }
@@ -286,8 +302,8 @@ function App() {
                 <Navigate to="/game" replace />
               ) : (
                 <Register
-                // isLoading={isLoading} 
-                // registrationUser={registrationUser} 
+                // isLoading={isLoading}
+                // registrationUser={registrationUser}
                 />
               )
             }

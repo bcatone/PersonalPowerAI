@@ -1,33 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import Header from '../Header/Header';
-import { Link, NavLink } from 'react-router-dom';
+import React from 'react';
+import NavBar from '../common/NavBar/NavBar';
 import Chat from '../Chat/Chat';
-// import useForm from '../../hooks/useForm';
-// import CurrentUserContext from '../../contexts/CurrentUserContext';
+import MeetingSchedule from './Schedules/MeetingSchedule';
+import DailyChallenges from './DailyChallenges'; // Import the new component
 import './Dashboard.css';
-import Schedule from './Schedules/Schedules';
-import DashboardSection from './DashboardSection';
-import Footer from '../Footer/Footer';
 
 function Dashboard() {
-  // Step 1: Create a state variable for the popup visibility
-  const [isPopupVisible, setIsPopupVisible] = useState(false);
-
-  // Step 2: Create a function to toggle the popup visibility
-  const togglePopup = () => {
-    setIsPopupVisible(!isPopupVisible);
-  };
-
-  // let isLoggedIn = true;
-
   return (
     <>
-      {/* <Header 
-        // loggedIn={isLoggedIn} 
-      /> */}
       <section className="dashboard">
         <div className="grid-container">
-          {/* <DashboardSection /> */}
+          <div className="grid-item grid-item-navbar">
+            <NavBar />
+          </div>
           <div className="grid-item grid-item-progress">
             <h3 className="grid-item-name">Progress</h3>
             <p className="progress-text">
@@ -37,59 +22,16 @@ function Dashboard() {
           </div>
           <div className="grid-item grid-item-messages">
             <h3 className="grid-item-name">Inbox Messages</h3>
-            <div className="grid-item grid-item-messages">
-              <Chat />
-            </div>
+            <Chat />
           </div>
-          <div className="grid-item grid-item-challenges">
-            <h3 className="grid-item-name dark">Daily Challenges</h3>
-            <div className="challenge-text">
-              Pick a day to actively practice empathy. Make an effort to see situations from other
-              people's perspectives, both at work and in your personal life. Engage in conversations
-              with colleagues and friends, trying to understand their feelings and needs.{' '}
-              <div className="more-link" onClick={togglePopup}>
-                read more...
-              </div>
-            </div>
-            {/* Step 3: Conditionally render the popup */}
-            {isPopupVisible && (
-              <div className="popup-hint">
-                {/* Popup content */}
-                <div className="popup__container">
-                  <p className="popup-hint-text">
-                    Set Clear Goals: Define specific objectives for each challenge to ensure you
-                    know what skill or behavior you're working on.
-                  </p>
-                  <p className="popup-hint-text">
-                    Stay Consistent: Commit to regular practice to build and reinforce your soft
-                    skills over time.
-                  </p>
-                  <p className="popup-hint-text">
-                    Reflect and Learn: After each challenge, take time to reflect on your
-                    experiences and what you've learned.
-                  </p>
-                  <p className="popup-hint-text">
-                    Seek Feedback: If appropriate, ask for feedback from others to gain insights
-                    into your performance and areas for improvement.
-                  </p>
-                  <p className="popup-hint-text">
-                    Celebrate Progress: Acknowledge and celebrate your successes, no matter how
-                    small, to stay motivated and encouraged in your growth journey.
-                  </p>
-                  <button className="button button-hint" onClick={togglePopup}>
-                    CLOSE
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+          {/* Replace the Daily Challenges section with the new component */}
+          <DailyChallenges />
           <div className="grid-item grid-item-schedules">
             <h3 className="grid-item-name">Your Schedule</h3>
-            <Schedule />
+            <MeetingSchedule />
           </div>
         </div>
       </section>
-      {/* <Footer /> */}
     </>
   );
 }

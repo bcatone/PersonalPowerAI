@@ -1,8 +1,9 @@
 .layout-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  min-height: 90vh;
 }
 
 .main-content {
-    width: 100%;
+  width: 100%;
 }

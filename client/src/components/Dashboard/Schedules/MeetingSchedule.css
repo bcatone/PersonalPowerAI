@@ -1,0 +1,81 @@
+/* Meeting.css */
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.schedule-time {
+  font-weight: bold;
+}
+
+.schedule-event {
+  flex: 1;
+  text-align: left;
+}
+
+.delete-button {
+  margin-right: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* .archive-button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+} */
+
+/* MeetingCalendar.css */
+.schedule-container {
+  padding: 0;
+}
+
+.schedule-list {
+  list-style: none;
+  padding: 0;
+  font-family: 'TT-InterphasesMono';
+  font-size: 14px;
+}
+
+.add-button {
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.schedule__form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.date__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date__input {
+  margin: 4px;
+}
+
+.schedule-item.archived {
+  opacity: 0.5;
+}
+
+.description.archived-text {
+  opacity: 0.5;
+}
