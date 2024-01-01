@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../NavBar/NavBar.css'
+import '../NavBar/NavBar.css';
 import { useDispatch } from 'react-redux';
 import { clearUser } from '../../../redux/actions/authActions';
 
@@ -12,13 +12,15 @@ function NavBar() {
   // Move this function if logout option occurs elsewhere
   const handleLogoutUser = () => {
     dispatch(clearUser());
-  
   };
 
   return (
-    <div className="grid-item grid-item-navbar">
-      <Link to="me/dashboard"><h3 className="grid-item-name dark">Dashboard</h3></Link>
+    <div className="navbar">
+      {/* <Link to="me/dashboard"><h3 className="grid-item-name dark">Dashboard</h3></Link> */}
       <div className="grid-main-links">
+        <Link className="grid-link grid-link_state_active" to="me/dashboard">
+          Dashboard
+        </Link>
         <Link className="grid-link" to="me/profile">
           Profile
         </Link>
@@ -41,6 +43,9 @@ function NavBar() {
       <div className="grid-bottom-links">
         <Link className="grid-link" to="me/settings">
           Settings
+        </Link>
+        <Link className="grid-link" to="me/projects">
+          Donate
         </Link>
         <p className="grid-link" onClick={handleLogoutUser}>
           Sign Out
